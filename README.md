@@ -1,3 +1,6 @@
+php ./init --env=Development
+php ./yii migrate/up --interactive=0
+
 FeehiCMS  __[(English)](docs/README_EN.md)__  首款编写单元测试、功能测试、验收测试的yii2开源系统
 ===============================
 
@@ -30,7 +33,7 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
 
 1.0.0alpha3 重写文章tag,修复两次model validate
 
-1.0.0alpha2 修复bug 
+1.0.0alpha2 修复bug
 
 1.0.0alpha1 增加restful api,单元测试,行为测试,验收测试,替换为yii2最新模板,优化composer安装依赖替换fxp/composer-asset-plugin为Asset Packagist,重写rbac权限管理替换为yii2内置实现
 
@@ -58,12 +61,12 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
  * 验收测试
  * RBAC权限管理
  * restful api
- * 文章管理 
+ * 文章管理
  * 操作日志
- 
+
  FeehiCMS提供完备的web系统基础通用功能，包括前后台菜单管理,文章标签,广告,banner,缓存,网站设置,seo设置,邮件设置,分类管理,单页...
- 
- 
+
+
 快速体验
 ----------------
 1. 使用演示站点
@@ -85,30 +88,30 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
     $ docker pull registry.cn-hangzhou.aliyuncs.com/liufee/cms
     $ docker run --name feehicms -h feehicms -itd -p 80:80 liufee/cms
     ```
- 
- 
+
+
 安装
 ---------------
 前置条件: 如未特别说明，本文档已默认您把php命令加入了环境变量，如果您未把php加入环境变量，请把以下命令中的php替换成/path/to/php
 1. 使用归档文件(简单，适合没有yii2经验者)
     >使用此方式安装，后台超管用户名和密码会在安装过程中让您填入
     1. 下载FeehiCMS源码 [点击此处下载最新版](http://resource-1251086492.file.myqcloud.com/Feehi_CMS.zip)
-    2. 解压到目录 
+    2. 解压到目录
     3. 配置web服务器(参见下面)
     4. 浏览器打开 http://localhost/install.php 按照提示完成安装(若使用php内置web服务a器则地址为 http://localhost:8080/install.php )
     5. 完成
-    
+
 2. 使用composer (`推荐使用此方式安装`)
     >使用此方式安装，默认的后台超级管理员用户名admin密码123456
-    
+
      >composer的安装以及国内镜像设置请点击 [此处](http://www.phpcomposer.com/)
-     
+
      >以下命令默认您已全局安装composer，如果您是局部安装的composer:请使用php /path/to/composer.phar来替换以下命令中的composer
-     
+
      1. 使用composer下载创建FeehiCMS项目
         **以下两个命令任选其一。如果喜欢简单且日后不需要升级FeehiCMS请选择命令一,如果日后需要平滑升级FeehiCMS请选择命令二**
         **2018.01.25备注:当前推荐使用命令一，命令二还有一些bug，遇到情况请反馈给我**
-        
+
         ```bash
             $ composer create-project feehi/cms webApp //此命令创建的FeehiCMS项目不能平滑升级新版本(目录结构简单,目前主力维护版本)
         ```
@@ -123,17 +126,17 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
          ```
      3. 配置web服务器(参加下面)
      4. 完成
- 
+
 附:web服务器配置(注意是设置"path/to/frontend/web为根目录)
- 
+
  * php内置web服务器(仅可用于开发环境,当您的环境中没有web服务器时)
  ```bash
   cd /path/to/cms
-  php ./yii serve  
-  
+  php ./yii serve
+
   #至此启动成功，可以通过localhost:8080/和localhost:8080/admin来访问了，在线安装即访问localhost:8080/install.php
  ```
- 
+
  * Apache
  ```bash
   DocumentRoot "path/to/frontend/web"
@@ -145,11 +148,11 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
       RewriteCond %{REQUEST_FILENAME} !-d
       # 如果请求的不是真实文件或目录，分发请求至 index.php
       RewriteRule . index.php
-  
+
       # ...其它设置...
   </Directory>
   ```
-  
+
  * Nginx
  ```bash
  server {
@@ -157,11 +160,11 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
      root   /path/to/frontend/web;
      index  index.php index.html index.htm;
      try_files $uri $uri/ /index.php?$args;
-     
+
      location ~ /api/(?!index.php).*$ {
         rewrite /api/(.*) /api/index.php?r=$1 last;
      }
- 
+
      location ~ \.php$ {
          fastcgi_pass   127.0.0.1:9000;
          fastcgi_index  index.php;
@@ -170,8 +173,8 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
      }
  }
  ```
- 
- 
+
+
 运行测试
 -------
 1. 仅运行单元测试,功能测试(不需要配置web服务器)
@@ -186,12 +189,12 @@ FeehiCMS没有对yii2做任何的修改、封装，但是把yii2的一些优秀�
 
 项目展示
 ------------
-* [选校通](https://www.xuanxt.com/)   
-* [微信公众号益乐游戏](http://www.ylegame.com/)  
-* [Usens Dev博客](http://dev.usensinc.com/)  
-* [最美容颜](http://www.zmface.com/)  
-* [云上旅游集团](http://www.ys517.cn/)  
-* [微信公众号蚂蚁鲜生](http://www.chijidun.com/) 
+* [选校通](https://www.xuanxt.com/)
+* [微信公众号益乐游戏](http://www.ylegame.com/)
+* [Usens Dev博客](http://dev.usensinc.com/)
+* [最美容颜](http://www.zmface.com/)
+* [云上旅游集团](http://www.ys517.cn/)
+* [微信公众号蚂蚁鲜生](http://www.chijidun.com/)
 *  ......
 
 
