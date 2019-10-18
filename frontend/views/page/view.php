@@ -14,18 +14,18 @@
 use frontend\models\Article;
 use yii\helpers\Url;
 
-$this->title = $model->title . '-' . yii::$app->feehi->website_title;
+$this->title = $model->title . '-' . Yii::$app->feehi->website_title;
 
-$this->registerMetaTag(['keywords' => $model->seo_keywords]);
-$this->registerMetaTag(['description' => $model->seo_description]);
-$this->registerMetaTag(['tags' => call_user_func(function()use($model) {
+$this->registerMetaTag(['name' => 'keywords', 'content' => $model->seo_keywords], 'keywords');
+$this->registerMetaTag(['name' => 'description', 'content' => $model->seo_description], 'description');
+$this->registerMetaTag(['name' => 'tags', 'content'=> call_user_func(function()use($model) {
     $tags = '';
     foreach ($model->articleTags as $tag) {
         $tags .= $tag->value . ',';
     }
     return rtrim($tags, ',');
 }
-)]);
+)], 'tags');
 ?>
 <div class="pagewrapper clearfix">
     <aside class="pagesidebar">
@@ -35,7 +35,7 @@ $this->registerMetaTag(['tags' => call_user_func(function()use($model) {
             foreach ($menus as $menu) {
                 $url = Url::to(['page/view', 'name'=>$menu['sub_title']]);
                 $current = '';
-                if (yii::$app->request->get('id', '') == $menu->id) {
+                if (Yii::$app->request->get('id', '') == $menu->id) {
                     $current = " current-menu-item current-page-item ";
                 }
                 echo "<li class='menu-item menu-item-type-post_type menu-item-object-page {$current} page_item page-item-{$menu->id} menu-item-{$menu->id}'><a href='{$url}'>{$menu->title}</a></li>";

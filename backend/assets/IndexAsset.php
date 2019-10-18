@@ -8,18 +8,17 @@
 
 namespace backend\assets;
 
-use yii;
 
+/**
+ * 重要提示：启用配置后，修改此处的js/css将不会生效
+ * 需要在backend/config/main.php中assetManager.bundles处修改配置
+ * 主要用于测试环境走本地文件,正式环境配置成cdn
+ *
+ * Class IndexAsset
+ * @package backend\assets
+ */
 class IndexAsset extends \yii\web\AssetBundle
 {
-
-    public function init()
-    {
-        parent::init();
-        if( yii::$app->getRequest()->getBaseUrl() !== "" ){
-            $this->sourcePath = '@backend/web';
-        }
-    }
 
     public $css = [
         'static/css/bootstrap.min.css',

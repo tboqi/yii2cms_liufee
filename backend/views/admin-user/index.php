@@ -22,7 +22,7 @@ use backend\grid\ActionColumn;
 use backend\models\User;
 
 $assignment = function ($url, $model) {
-    return Html::a('<i class="fa fa-tablet"></i> ' . yii::t('app', 'Assign Roles'), Url::to([
+    return Html::a('<i class="fa fa-tablet"></i> ' . Yii::t('app', 'Assign Roles'), Url::to([
         'assign',
         'uid' => $model['id']
     ]), [
@@ -32,7 +32,7 @@ $assignment = function ($url, $model) {
 };
 
 $this->title = "Admin Users";
-$this->params['breadcrumbs'][] = yii::t('app', 'Admin Users');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Admin Users');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -45,7 +45,6 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Admin Users');
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
-                    'layout' => "{items}\n{pager}",
                     'columns' => [
                         [
                             'class' => CheckboxColumn::className(),
@@ -55,10 +54,10 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Admin Users');
                         ],
                         [
                             'attribute' => 'role',
-                            'label' => yii::t('app', 'Role'),
+                            'label' => Yii::t('app', 'Role'),
                             'value' => function ($model) {
                                 /** @var $model backend\models\User */
-                                return $model->getRoleName();
+                                return $model->getRolesNameString();
                             },
                         ],
                         [
@@ -66,12 +65,12 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Admin Users');
                         ],
                         [
                             'attribute' => 'status',
-                            'label' => yii::t('app', 'Status'),
+                            'label' => Yii::t('app', 'Status'),
                             'value' => function ($model) {
                                 if($model->status == User::STATUS_ACTIVE){
-                                    return yii::t('app', 'Normal');
+                                    return Yii::t('app', 'Normal');
                                 }else if( $model->status == User::STATUS_DELETED ){
-                                    return yii::t('app', 'Disabled');
+                                    return Yii::t('app', 'Disabled');
                                 }
                             },
                             'filter' => User::getStatuses(),
@@ -86,7 +85,6 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Admin Users');
                         ],
                         [
                             'class' => ActionColumn::className(),
-                            'template' => '{update}{delete}',
                             'buttons' => ['assignment' => $assignment],
                         ],
                     ]

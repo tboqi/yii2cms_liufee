@@ -28,13 +28,13 @@ $this->title = 'User';
             ]); ?>
             <?php
             $temp = ['maxlength' => 64];
-            if (yii::$app->controller->action->id == 'update') {
+            if (Yii::$app->controller->action->id == 'update') {
                 $temp['disabled'] = 'disabled';
             }
             ?>
             <?= $form->field($model, 'username')->textInput($temp) ?>
             <div class="hr-line-dashed"></div>
-            <?= $form->field($model, 'avatar')->imgInput(['width' => 200]) ?>
+            <?= $form->field($model, 'avatar')->imgInput() ?>
             <div class="hr-line-dashed"></div>
             <?= $form->field($model, 'email')->textInput(['maxlength' => 64]) ?>
             <div class="hr-line-dashed"></div>

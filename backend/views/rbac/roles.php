@@ -9,7 +9,7 @@
 /**
  * @var $this yii\web\View
  * @var $dataProvider yii\data\ArrayDataProvider
- * @var $searchModel backend\models\form\Rbac
+ * @var $searchModel backend\models\form\RbacForm
  */
 
 use backend\grid\GridView;
@@ -21,7 +21,7 @@ use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 
 $this->title = "Roles";
-$this->params['breadcrumbs'][] = yii::t('app', 'Roles');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Roles');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -31,17 +31,18 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Roles');
                 <?= Bar::widget([
                     'buttons' => [
                         'create' => function () {
-                            return Html::a('<i class="fa fa-plus"></i> ' . yii::t('app', 'Create'), Url::to(['role-create']), [
-                                'title' => yii::t('app', 'Create'),
+                            return Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create'), Url::to(['role-create']), [
+                                'title' => Yii::t('app', 'Create'),
                                 'data-pjax' => '0',
                                 'class' => 'btn btn-white btn-sm',
                             ]);
                         },
                         'delete' => function () {
-                            return Html::a('<i class="fa fa-trash-o"></i> ' . yii::t('app', 'Delete'), Url::to(['role-delete']), [
-                                'title' => yii::t('app', 'Delete'),
+                            return Html::a('<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Delete'), Url::to(['role-delete']), [
+                                'title' => Yii::t('app', 'Delete'),
                                 'data-pjax' => '0',
-                                'data-confirm' => yii::t('app', 'Really to delete?'),
+                                'param-sign' => 'name',
+                                'data-confirm' => Yii::t('app', 'Really to delete?'),
                                 'class' => 'btn btn-white btn-sm multi-operate',
                             ]);
                         }
@@ -67,34 +68,42 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Roles');
                         [
                             'class' => SortColumn::className(),
                             'primaryKey' => function($model){
-                                return $model['name'];
+                                return ["name" => $model['name']];
                             },
-                            'action' => Url::to(['roles-sort']),
+                            'action' => Url::to(['role-sort']),
                         ],
                         [
                             'class' => ActionColumn::className(),
                             'width' => '190px',
                             'buttons' => [
+                                'view-layer' => function($url, $model, $key){
+                                    return Html::a('<i class="fa fa-folder"></i> ', 'javascript:void(0)', [
+                                        'title' => Yii::t('yii', 'View'),
+                                        'onclick' => "viewLayer('" . Url::to(['role-view-layer', 'name' => $model->name]) . "',$(this))",
+                                        'data-pjax' => '0',
+                                        'class' => 'btn',
+                                    ]);
+                                },
                                 'update' => function ($url, $model, $key) {
-                                    return Html::a('<i class="fa  fa-edit" aria-hidden="true"></i> ' . Yii::t('app', 'Update'), Url::to([
+                                    return Html::a('<i class="fa  fa-edit" aria-hidden="true"></i> ', Url::to([
                                         'role-update',
                                         'name' => $model['name']
                                     ]), [
                                         'title' => Yii::t('app', 'Update'),
                                         'data-pjax' => '0',
-                                        'class' => 'btn btn-white btn-sm J_menuItem',
+                                        'class' => 'btn J_menuItem',
                                     ]);
                                 },
                                 'delete' => function ($url, $model) {
-                                    return Html::a('<i class="fa fa-trash-o"></i> ' . yii::t('app', 'Delete'), Url::to(['role-delete', 'name'=>$model['name']]), [
-                                        'title' => yii::t('app', 'Delete'),
+                                    return Html::a('<i class="fa fa-trash-o"></i> ', Url::to(['role-delete', 'name'=>$model['name']]), [
+                                        'title' => Yii::t('app', 'Delete'),
                                         'data-pjax' => '0',
                                         'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                                        'class' => 'btn btn-white btn-sm',
+                                        'class' => 'btn',
                                     ]);
                                 },
                             ],
-                            'template' => '{update} {delete}',
+                            'template' => '{view-layer} {update} {delete}',
                         ]
                     ]
                 ]) ?>

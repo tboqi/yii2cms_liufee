@@ -5,16 +5,17 @@
  * Email: job@feehi.com
  * Created at: 2017-09-12 22:02
  */
+
 use yii\helpers\Url;
 
 /**
  * @var $this yii\web\View
- * @var $model backend\models\form\Rbac
+ * @var $model backend\models\form\RbacForm
  */
 
 $this->params['breadcrumbs'] = [
-    ['label' => yii::t('app', 'Roles'), 'url' => Url::to(['roles'])],
-    ['label' => yii::t('app', 'Create') . yii::t('app', 'Roles')],
+    ['label' => Yii::t('app', 'Roles'), 'url' => Url::to(['roles'])],
+    ['label' => Yii::t('app', 'Create') . Yii::t('app', 'Roles')],
 ];
 
 ?>

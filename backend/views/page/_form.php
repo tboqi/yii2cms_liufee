@@ -14,6 +14,7 @@
 use backend\widgets\ActiveForm;
 use common\libs\Constants;
 use backend\widgets\Ueditor;
+use common\helpers\Util;
 
 $this->title = "Pages";
 ?>
@@ -35,7 +36,7 @@ $this->title = "Pages";
                     <!--left start-->
                     <div class="col-md-7 droppable sortable ui-droppable ui-sortable" style="">
                         <?= $form->field($model, 'title')->textInput(); ?>
-                        <?= $form->field($model, 'sub_title')->textInput(); ?>
+                        <?= $form->field($model, 'sub_title')->label(Yii::t("app", "Page Sign"))->textInput(); ?>
                         <?= $form->field($model, 'summary')->textArea(); ?>
                         <?= $form->field($model, 'content')->widget(Ueditor::className()) ?>
                     </div>
@@ -44,7 +45,7 @@ $this->title = "Pages";
                     <!--seo设置start-->
                     <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
                         <div class="ibox-title">
-                            <h5><?= yii::t('app', 'Seo Setting') ?></h5>
+                            <h5><?= Yii::t('app', 'Seo Setting') ?></h5>
                         </div>
                         <div class="ibox-content">
                             <?= $form->field($model, 'seo_title', [
@@ -66,7 +67,7 @@ $this->title = "Pages";
 
                     <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
                         <div class="ibox-title">
-                            <h5><?= yii::t('app', 'Other') ?></h5>
+                            <h5><?= Yii::t('app', 'Other') ?></h5>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
@@ -91,6 +92,7 @@ $this->title = "Pages";
                             </div>
                             <?= $form->field($model, 'tag')->textInput(); ?>
                             <?= $form->field($model, 'sort')->textInput(); ?>
+                            <?= $form->field($model, 'template')->chosenSelect(Util::getViewTemplate("page")); ?>
 
                             <?= $form->defaultButtons(['size' => 12]) ?>
                         </div>

@@ -10,6 +10,7 @@
  * @var $this yii\web\View
  * @var $model frontend\models\User
  */
+
 use backend\widgets\ActiveForm;
 use common\libs\Constants;
 use common\widgets\JsBlock;
@@ -43,7 +44,7 @@ $this->title = 'Ad';
                         break;
                     case  Constants::AD_IMG:
                         echo $form->field($model,"ad", $options)
-                            ->imgInput( ['style'=>"max-width:300px;max-height:200px"] );
+                            ->imgInput();
                         break;
                     case Constants::AD_VIDEO:
                         echo $form->field($model, "ad", $options)

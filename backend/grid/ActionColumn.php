@@ -10,6 +10,7 @@ namespace backend\grid;
 
 use Yii;
 use Closure;
+use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -23,9 +24,9 @@ class ActionColumn extends \yii\grid\ActionColumn
 
     public $queryParams = [];
 
-    public $width = '30px';
+    public $width = '100px';
 
-    public $template = '{update} {delete}';
+    public $template = '{view-layer} {update} {delete}';
 
     /**
      * @inheritdoc
@@ -33,12 +34,12 @@ class ActionColumn extends \yii\grid\ActionColumn
     public function init()
     {
         parent::init();
-        $this->header = yii::t('app', $this->header);
+        $this->header = Yii::t('app', $this->header);
         if (! isset($this->headerOptions['width'])) {
             $this->headerOptions['width'] = $this->width;
         }
 
-        $this->contentOptions = ['class' => 'da-icon-column', 'style' => 'width:' . $this->width . ';'];
+        $this->contentOptions = array_merge(['class' => 'da-icon-column', 'style' => 'width:' . $this->width . ';'], $this->contentOptions);
     }
 
     /**
@@ -48,41 +49,50 @@ class ActionColumn extends \yii\grid\ActionColumn
     {
         if (! isset($this->buttons['view'])) {
             $this->buttons['view'] = function ($url, $model, $key, $index, $gridView) {
-                return Html::a('<i class="fa fa-folder"></i> ' . Yii::t('yii', 'View'), $url, [
+                return Html::a('<i class="fa fa-folder"></i> ', $url, [
                     'title' => Yii::t('app', 'View'),
                     'data-pjax' => '0',
-                    'class' => 'btn btn-white btn-sm',
+                    'class' => 'btn-sm',
                 ]);
             };
         }
         if (! isset($this->buttons['view-layer'])) {
             $this->buttons['view-layer'] = function ($url, $model, $key, $index, $gridView) {
                 //$url = str_replace('viewLayer', 'view', $url);
-                return Html::a('<i class="fa fa-folder"></i> ' . Yii::t('yii', 'View'), 'javascript:void(0)', [
+                return Html::a('<i class="fa fa-folder"></i> ', 'javascript:void(0)', [
                     'title' => Yii::t('yii', 'View'),
                     'onclick' => "viewLayer('" . $url . "',$(this))",
                     'data-pjax' => '0',
-                    'class' => 'btn btn-white btn-sm',
+                    'class' => 'btn-sm',
                 ]);
             };
         }
         if (! isset($this->buttons['update'])) {
             $this->buttons['update'] = function ($url, $model, $key, $index, $gridView) {
-                return Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('app', 'Update'), $url, [
+                return Html::a('<i class="fa fa-edit"></i> ', $url, [
                     'title' => Yii::t('app', 'Update'),
                     'data-pjax' => '0',
-                    'class' => 'btn btn-white btn-sm',
+                    'class' => 'btn-sm',
                 ]);
             };
         }
         if (! isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model, $key, $index, $gridView) {
-                return Html::a('<i class="glyphicon glyphicon-trash" aria-hidden="true"></i> ' . Yii::t('app', 'Delete'), $url, [
+                $data = [];
+                if($model instanceof ActiveRecord) {
+                    $primaryKeys = $model->getPrimaryKey(true);
+                    $data = [];
+                    foreach ($primaryKeys as $key => $abandon) {
+                        $data[$key] = $model->$key;
+                    }
+                }
+                return Html::a('<i class="glyphicon glyphicon-trash" aria-hidden="true"></i> ', $url, [
                     'title' => Yii::t('app', 'Delete'),
                     'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'data-method' => 'post',
+                    'data-params' => json_encode($data),
                     'data-pjax' => '0',
-                    'class' => 'btn btn-white btn-sm',
+                    'class' => 'btn-sm',
                 ]);
             };
         }

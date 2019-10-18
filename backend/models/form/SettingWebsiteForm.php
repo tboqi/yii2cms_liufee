@@ -5,6 +5,7 @@
  * Email: job@feehi.com
  * Created at: 2016-03-23 12:54
  */
+
 namespace backend\models\form;
 
 use yii;
@@ -67,19 +68,29 @@ class SettingWebsiteForm extends \common\models\Options
             [
                 [
                     'website_title',
-                    'website_email',
                     'website_language',
                     'website_icp',
                     'website_statics_script',
                     'website_timezone',
-                    'website_url',
                     'seo_keywords',
                     'seo_description'
                 ],
                 'string'
             ],
+            [ 'website_url', 'required'],
+            [ 'website_url', 'validatorWebsiteUrl'],
+            [ 'website_email', 'email'],
             [['website_status', 'website_comment', 'website_comment_need_verify'], 'integer'],
         ];
+    }
+
+    public function validatorWebsiteUrl($attribute, $params)
+    {
+        if( strpos($this->$attribute, "https://") === 0 || strpos($this->$attribute, "http://") === 0 || strpos($this->$attribute, "//") === 0   ){
+            return;
+        }
+        $this->addError($attribute, yii::t("app", '{attribute} must begin with https:// or http:// or //', ['attribute'=>yii::t('app', 'Website Url')]));
+        return;
     }
 
     /**
@@ -114,15 +125,15 @@ class SettingWebsiteForm extends \common\models\Options
                 $value = $this->$name;
                 $value === null && $value = '';
                 $model->value = $value;
-                $result = $model->save();
+                $result = $model->save(false);
             } else {
                 $model = new Options();
                 $model->name = $name;
                 $model->value = '';
-                $result = $model->save();
+                $result = $model->save(false);
             }
             if ($result == false) {
-                return $result;
+                return false;
             }
         }
         return true;

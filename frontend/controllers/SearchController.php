@@ -9,8 +9,9 @@
 namespace frontend\controllers;
 
 use common\models\meta\ArticleMetaTag;
-use yii;
+use Yii;
 use frontend\models\Article;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 
@@ -26,7 +27,7 @@ class SearchController extends Controller
     {
         $where = ['type' => Article::ARTICLE];
         $query = Article::find()->select([])->where($where);
-        $keyword = htmlspecialchars(yii::$app->getRequest()->get('q'));
+        $keyword = Yii::$app->getRequest()->get('q');
         $query->andFilterWhere(['like', 'title', $keyword]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -39,7 +40,7 @@ class SearchController extends Controller
         ]);
         return $this->render('/article/index', [
             'dataProvider' => $dataProvider,
-            'type' => yii::t('frontend', 'Search keyword {keyword} results', ['keyword'=>$keyword]),
+            'type' => Yii::t('frontend', 'Search keyword {keyword} results', ['keyword'=>Html::encode($keyword)]),
         ]);
     }
 
@@ -60,7 +61,7 @@ class SearchController extends Controller
         ]);
         return $this->render('/article/index', [
             'dataProvider' => $dataProvider,
-            'type' => yii::t('frontend', 'Tag {tag} related articles', ['tag'=>$tag]),
+            'type' => Yii::t('frontend', 'Tag {tag} related articles', ['tag'=>$tag]),
         ]);
     }
 }

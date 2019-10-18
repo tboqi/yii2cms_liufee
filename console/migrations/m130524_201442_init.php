@@ -187,7 +187,7 @@ class m130524_201442_init extends Migration
             'scan_count' => $this->integer()->unsigned()->defaultValue(0)->notNull()->comment("浏览次数"),
             'comment_count' => $this->integer()->unsigned()->defaultValue(0)->notNull()->comment("浏览次数"),
             'can_comment' => $this->smallInteger()->unsigned()->defaultValue(1)->notNull()->comment("是否可评论.0否,1是"),
-            'visibility' => $this->smallInteger()->unsigned()->defaultValue(1)->notNull()->comment("文章可见性.1.公开,2.评论可见,3.加密文章,4.登陆可见"),
+            'visibility' => $this->smallInteger()->unsigned()->defaultValue(1)->notNull()->comment("文章可见性.1.公开,2.评论可见,3.加密文章,4.登录可见"),
             'password' => $this->string()->defaultValue('')->notNull()->comment("文章明文密码"),
             'flag_headline' => $this->smallInteger()->unsigned()->defaultValue(0)->notNull()->comment("头条.0否,1.是"),
             'flag_recommend' => $this->smallInteger()->unsigned()->defaultValue(0)->notNull()->comment("推荐.0否,1.是"),
@@ -1273,10 +1273,10 @@ class m130524_201442_init extends Migration
                 ['20','0','19','清除前台','clear/frontend','','0','_blank','0','1','1505570974','1505570974'],
                 ['21','0','19','清除后台','clear/backend','','0','_blank','0','1','1505570994','1505570994'],
                 ['22','0','0','日志','log/index','fa fa-history','8','_blank','0','1','1505571212','1512380045'],
-                ['23','1','0','首页','/','','0','_self','0','1','1505636890','1505637024'],
-                ['24','1','0','php','/php','','0','_self','0','1','1505636915','1505636937'],
-                ['25','1','0','java','/java','','0','_self','0','1','1505636975','1505636975'],
-                ['26','1','0','javascript','/javascript','','0','_self','0','1','1505637000','1505637000'],
+                ['23','1','0','首页','article/index','','0','_self','0','1','1505636890','1505637024'],
+                ['24','1','0','php','{"0":"article/index","cat":"php"}','','0','_self','0','1','1505636915','1505636937'],
+                ['25','1','0','java','{"0":"article/index","cat":"java"}','','0','_self','0','1','1505636975','1505636975'],
+                ['26','1','0','javascript','{"0":"article/index","cat":"javascript"}','','0','_self','0','1','1505637000','1505637000'],
                 ['27','0','0','运营管理','','fa fa-ils','1','_self','0','1','1505637000','1505637000'],
                 ['28','0','27','Banner管理','banner/index','','0','_self','0','1','1505637000','1505637000'],
                 ['29','0','27','广告管理','ad/index','','0','_self','0','1','1505637000','1505637000'],
@@ -1525,17 +1525,26 @@ class m130524_201442_init extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropForeignKey('fk_aid', '{{%article_content}}');
+        $this->dropForeignKey('fk_article_meta_aid', '{{%article_meta}}');
+        $this->dropForeignKey('fk_comment_aid', '{{%comment}}');
+
+        $this->dropIndex('index_key', '{{%article_meta}}');
+        $this->dropIndex('index_aid', '{{%article_meta}}');
+        $this->dropIndex('index_aid', '{{%comment}}');
+
+        $this->dropTable('{{%options}}');
+        $this->dropTable('{{%menu}}');
+        $this->dropTable('{{%friendly_link}}');
+        $this->dropTable('{{%comment}}');
+        $this->dropTable('{{%article_meta}}');
+        $this->dropTable('{{%article_content}}');
+        $this->dropIndex('index_title', '{{%article}}');
+        $this->dropTable('{{%article}}');
+        $this->dropTable('{{%category}}');
         $this->dropTable('{{%admin_log}}');
         $this->dropTable('{{%admin_user}}');
-        $this->dropTable('{{%article_content}}');
-        $this->dropTable('{{%article}}');
-        $this->dropTable('{{%article_meta}}');
-        $this->dropTable('{{%category}}');
-        $this->dropTable('{{%comment}}');
-        $this->dropTable('{{%friend_link}}');
-        $this->dropTable('{{%menu}}');
-        $this->dropTable('{{%options}}');
+        $this->dropTable('{{%user}}');
     }
 
     public function getParams()

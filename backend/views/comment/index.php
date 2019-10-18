@@ -16,14 +16,13 @@ use backend\grid\DateColumn;
 use backend\grid\GridView;
 use common\libs\Constants;
 use yii\helpers\Html;
-use backend\models\Article;
 use backend\widgets\Bar;
 use backend\models\Comment;
 use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 
 $this->title = 'Comments';
-$this->params['breadcrumbs'][] = yii::t('app', 'Comments');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Comments');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -36,7 +35,6 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
-                    'layout' => "{items}\n{pager}",
                     'columns' => [
                         [
                             'class' => CheckboxColumn::className(),
@@ -45,8 +43,11 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                             'attribute' => 'id',
                         ],
                         [
+                            'attribute' => 'aid',
+                        ],
+                        [
                             'attribute' => 'articleTitle',
-                            'label' => yii::t('app', 'Article Title'),
+                            'label' => Yii::t('app', 'Article Title'),
                             'value' => function ($model) {
                                 return $model->article->title;
                             }
@@ -91,16 +92,16 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                                 'status_init' => function($url, $model, $key){
                                     $comment = new Comment();
                                     if( $model->status != Comment::STATUS_INIT ) return '';
-                                    return Html::a('<i class="fa fa-check"></i> ' . Yii::t('app', 'Passed'), ['update', 'id' => $model['id']], [
-                                            'class' => 'btn btn-white btn-sm',
+                                    return Html::a('<i class="fa fa-check"></i> ', ['update', 'id' => $model['id']], [
+                                            'class' => 'btn-sm',
                                             'data-confirm' => Yii::t('app', 'Are you sure you want to enable this item?'),
                                             'data-method' => 'post',
                                             'data-pjax' => '0',
                                             'data-params' => [
                                                 $comment->formName() . '[status]' => Comment::STATUS_PASSED
                                             ]
-                                        ]) . Html::a('<i class="fa fa-remove"></i> ' . Yii::t('app', 'Unpassed'), ['update', 'id' => $model['id']], [
-                                            'class' => 'btn btn-white btn-sm',
+                                        ]) . Html::a('<i class="fa fa-remove"></i> ', ['update', 'id' => $model['id']], [
+                                            'class' => 'btn-sm',
                                             'data-confirm' => Yii::t('app', 'Are you sure you want to disable this item?'),
                                             'data-method' => 'post',
                                             'data-pjax' => '0',
@@ -113,8 +114,8 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                                     if( $model->status == Comment::STATUS_INIT ) return '';
                                     $comment = new Comment();
                                     if ($model->status == Comment::STATUS_PASSED ) {
-                                        return Html::a('<i class="fa fa-remove"></i> ' . Yii::t('app', 'Unpassed'), ['update', 'id' => $model['id']], [
-                                            'class' => 'btn btn-white btn-sm',
+                                        return Html::a('<i class="fa fa-remove"></i> ', ['update', 'id' => $model['id']], [
+                                            'class' => 'btn-sm',
                                             'data-confirm' => Yii::t('app', 'Are you sure you want to enable this item?'),
                                             'data-method' => 'post',
                                             'data-pjax' => '0',
@@ -123,8 +124,8 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                                             ]
                                         ]);
                                     } else if( $model->status == Comment::STATUS_UNPASS ) {
-                                        return Html::a('<i class="fa fa-check"></i> ' . Yii::t('app', 'Passed'), ['update', 'id' => $model['id']], [
-                                            'class' => 'btn btn-white btn-sm',
+                                        return Html::a('<i class="fa fa-check"></i> ', ['update', 'id' => $model['id']], [
+                                            'class' => 'btn-sm',
                                             'data-confirm' => Yii::t('app', 'Are you sure you want to disable this item?'),
                                             'data-method' => 'post',
                                             'data-pjax' => '0',
@@ -135,7 +136,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Comments');
                                     }
                                 },
                             ],
-                            'template' => '{update}{status_init} {status_operated}{delete}',
+                            'template' => '{view-layer} {status_init} {status_operated} {update} {delete}',
                         ],
                     ]
                 ]); ?>

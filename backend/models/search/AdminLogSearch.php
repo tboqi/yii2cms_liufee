@@ -10,6 +10,8 @@ namespace backend\models\search;
 
 use backend\behaviors\TimeSearchBehavior;
 use backend\components\search\SearchEvent;
+use backend\models\AdminLog;
+use Yii;
 use yii\data\ActiveDataProvider;
 
 class AdminLogSearch extends \backend\models\AdminLog
@@ -36,20 +38,23 @@ class AdminLogSearch extends \backend\models\AdminLog
         return [
             [
                 'class' => TimeSearchBehavior::className(),
-                'timeAttributes' => ['admin_log.created_at' => 'created_at'],
+                'timeAttributes' => [AdminLog::tableName() . '.created_at' => 'created_at'],
             ]
         ];
     }
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return ActiveDataProvider
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
         $query = self::find()->orderBy("id desc");
         $query->joinWith(['user']);
-        $dataProvider = new ActiveDataProvider([
+        /** @var ActiveDataProvider $dataProvider */
+        $dataProvider = Yii::createObject([
+            'class' => ActiveDataProvider::className(),
             'query' => $query,
         ]);
         $dataProvider->setSort([
@@ -83,8 +88,8 @@ class AdminLogSearch extends \backend\models\AdminLog
         $query->andFilterWhere(['id' => $this->id])
             ->andFilterWhere(['like', 'route', $this->route])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'admin_user.username', $this->adminUsername]);
-        $this->trigger(SearchEvent::BEFORE_SEARCH, new SearchEvent(['query'=>$query]));
+            ->andFilterWhere(['like', 'username', $this->adminUsername]);
+        $this->trigger(SearchEvent::BEFORE_SEARCH, Yii::createObject(['class' => SearchEvent::className(), 'query'=>$query]));
         return $dataProvider;
     }
 

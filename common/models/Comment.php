@@ -34,6 +34,7 @@ class Comment extends \yii\db\ActiveRecord
     const STATUS_PASSED = 1;
     const STATUS_UNPASS = 2;
 
+
     /**
      * @inheritdoc
      */
@@ -69,15 +70,16 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'aid' => Yii::t('app', 'Aid'),
-            'uid' => Yii::t('app', 'Uid'),
+            'aid' => Yii::t('app', 'Article Id'),
+            'uid' => Yii::t('app', 'User Id'),
             'nickname' => Yii::t('app', 'Nickname'),
-            'content' => Yii::t('app', 'Content'),
-            'reply_to' => Yii::t('app', 'Replay To'),
-            'ip' => Yii::t('app', 'Ip'),
+            'content' => Yii::t('app', 'Comment Message'),
+            'reply_to' => Yii::t('app', 'Replay User Id'),
+            'ip' => Yii::t('app', 'IP Address'),
             'status' => Yii::t('app', 'Status'),
             'email' => Yii::t('app', 'Email'),
             'website_url' => Yii::t('app', 'Website'),
+            'admin_id' => Yii::t('app', 'Admin User Id'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
@@ -183,7 +185,8 @@ class Comment extends \yii\db\ActiveRecord
         $this->content = str_replace([
             '{%URL%}',
             '{%EXT%}'
-        ], [yii::$app->params['site']['url'] . '/static/images/smilies/icon_', '.gif'], $this->content);
+        ], [Yii::$app->params['site']['url'] . '/static/images/smilies/icon_', '.gif'], $this->content);
+        parent::afterFind();
 
     }
 

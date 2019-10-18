@@ -9,12 +9,12 @@ use yii\helpers\Url;
 
 /**
  * @var $this yii\web\View
- * @var $model backend\models\form\Rbac
+ * @var $model backend\models\form\RbacForm
  */
 
 $this->params['breadcrumbs'] = [
-    ['label' => yii::t('app', 'Permissions'), 'url' => Url::to(['permissions'])],
-    ['label' => yii::t('app', 'Create') . yii::t('app', 'Permissions')],
+    ['label' => Yii::t('app', 'Permissions'), 'url' => Url::to(['permissions'])],
+    ['label' => Yii::t('app', 'Create') . Yii::t('app', 'Permissions')],
 ];
 
 ?>

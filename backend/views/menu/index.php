@@ -25,7 +25,7 @@ use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 
 $this->title = "Backend Menus";
-$this->params['breadcrumbs'][] = yii::t('app', 'Backend Menus');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Backend Menus');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Backend Menus');
                         ],
                         [
                             'attribute' => 'name',
-                            'label' => yii::t('app', 'Name'),
+                            'label' => Yii::t('app', 'Name'),
                             'format' => 'html',
                             'value' => function ($model, $key, $index, $column) {
                                 return str_repeat("--", $model['level'] - 1) . $model['name'];
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Backend Menus');
                         ],
                         [
                             'attribute' => 'icon',
-                            'label' => yii::t('app', 'Icon'),
+                            'label' => Yii::t('app', 'Icon'),
                             'format' => 'html',
                             'value' => function ($model) {
                                 return "<i class=\"fa {$model['icon']}\"></i>";
@@ -59,45 +59,48 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Backend Menus');
                         ],
                         [
                             'attribute' => 'url',
-                            'label' => yii::t('app', 'Url'),
+                            'label' => Yii::t('app', 'Url'),
                         ],
                         [
                             'class' => SortColumn::className(),
-                            'label' => yii::t('app', 'Sort')
+                            'primaryKey' => function($model){
+                                return ["id" => $model["id"]];
+                            },
+                            'label' => Yii::t('app', 'Sort')
                         ],
                         [
                             'class' => StatusColumn::className(),
                             'attribute' => 'is_display',
                             'formName' => (new Menu)->formName() . '[is_display]',
-                            'label' => yii::t('app', 'Is Display'),
+                            'label' => Yii::t('app', 'Is Display'),
                             'filter' => Constants::getYesNoItems()
                         ],
                         [
                             'class' => DateColumn::className(),
                             'attribute' => 'created_at',
-                            'label' => yii::t('app', 'Created At'),
+                            'label' => Yii::t('app', 'Created At'),
                         ],
                         [
                             'class' => DateColumn::className(),
                             'attribute' => 'updated_at',
-                            'label' => yii::t('app', 'Updated At'),
+                            'label' => Yii::t('app', 'Updated At'),
                         ],
                         [
                             'class' => ActionColumn::className(),
                             'width' => '190px',
                             'buttons' => [
                                 'create' => function ($url, $model, $key) {
-                                    return Html::a('<i class="fa  fa-plus" aria-hidden="true"></i> ' . Yii::t('app', 'Create'), Url::to([
+                                    return Html::a('<i class="fa  fa-plus" aria-hidden="true"></i> ', Url::to([
                                         'create',
                                         'parent_id' => $model['id']
                                     ]), [
                                         'title' => Yii::t('app', 'Create'),
                                         'data-pjax' => '0',
-                                        'class' => 'btn btn-white btn-sm J_menuItem',
+                                        'class' => 'btn-sm J_menuItem',
                                     ]);
                                 }
                             ],
-                            'template' => '{create} {update} {delete}',
+                            'template' => '{create} {view-layer} {update} {delete}',
                         ]
                     ]
                 ]) ?>

@@ -8,7 +8,7 @@
 
 namespace frontend\controllers;
 
-use yii;
+use Yii;
 use yii\web\Controller;
 use frontend\models\Article;
 use yii\web\NotFoundHttpException;
@@ -26,13 +26,16 @@ class PageController extends Controller
     public function actionView($name = '')
     {
         if ($name == '') {
-            $name = yii::$app->getRequest()->getPathInfo();
+            $name = Yii::$app->getRequest()->getPathInfo();
         }
         $model = Article::findOne(['type' => Article::SINGLE_PAGE, 'sub_title' => $name]);
         if (empty($model)) {
             throw new NotFoundHttpException('None page named ' . $name);
         }
-        return $this->render('view', [
+        $template = "view";
+        isset($model->category) && $model->category->template != "" && $template = $model->category->template;
+        $model->template != "" && $template = $model->template;
+        return $this->render($template, [
             'model' => $model,
         ]);
     }

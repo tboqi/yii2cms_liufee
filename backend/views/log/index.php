@@ -14,7 +14,6 @@
 
 use backend\grid\DateColumn;
 use backend\grid\GridView;
-use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use backend\widgets\Bar;
 use backend\grid\CheckboxColumn;
@@ -22,7 +21,7 @@ use backend\grid\ActionColumn;
 
 $this->title = "Admin Log";
 
-$this->params['breadcrumbs'][] = yii::t('app', 'Admin Log');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Admin Log');
 ?>
 <div class="row">
     <div class="col-sm-12">

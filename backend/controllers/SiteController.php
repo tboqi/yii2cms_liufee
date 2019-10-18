@@ -8,7 +8,7 @@
 
 namespace backend\controllers;
 
-use yii;
+use Yii;
 use Exception;
 use common\models\Comment;
 use backend\models\form\LoginForm;
@@ -88,7 +88,7 @@ class SiteController extends \yii\web\Controller
      */
     public function actionMain()
     {
-        switch (yii::$app->getDb()->driverName) {
+        switch (Yii::$app->getDb()->driverName) {
             case "mysql":
                 $dbInfo = 'MySQL ' . (new Query())->select('version()')->one()['version()'];
                 break;
@@ -102,13 +102,11 @@ class SiteController extends \yii\web\Controller
             'OPERATING_ENVIRONMENT' => PHP_OS . ' ' . $_SERVER['SERVER_SOFTWARE'],
             'PHP_RUN_MODE' => php_sapi_name(),
             'DB_INFO' => $dbInfo,
-            'PROGRAM_VERSION' => "1.0",
-            'UPLOAD_MAX_FILESIZE' => ini_get('upload_max_filesize'),
+            'UPLOAD_MAX_FILE_SIZE' => ini_get('upload_max_filesize'),
             'MAX_EXECUTION_TIME' => ini_get('max_execution_time') . "s"
         ];
         $obj = new ServerInfo();
         $serverInfo = $obj->getinfo();
-        error_reporting(E_ALL);
         $status = [
             'DISK_SPACE' => [
                 'NUM' => ceil( $serverInfo['diskTotal'] - $serverInfo['freeSpace'] ) . 'G' . ' / ' . ceil($serverInfo['diskTotal']) . 'G',
@@ -129,46 +127,43 @@ class SiteController extends \yii\web\Controller
             'USER' => User::find()->count('id'),
             'FRIEND_LINK' => FriendlyLink::find()->count('id'),
         ];
+        $percent = '0.00';
         $statics = [
             'ARTICLE' => [
                 $temp['ARTICLE'],
-                $temp['ARTICLE'] == 0 ? 0 :
-                number_format(ArticleModel::find()->where([
+                $temp['ARTICLE'] ? number_format(ArticleModel::find()->where([
                         'between',
                         'created_at',
                         strtotime(date('Y-m-01')),
                         strtotime(date('Y-m-01 23:59:59') . " +1 month -1 day")
-                    ])->count('id') / $temp['ARTICLE'] * 100, 2)
+                    ])->count('id') / $temp['ARTICLE'] * 100, 2) : $percent
             ],
             'COMMENT' => [
                 $temp['COMMENT'],
-                $temp['COMMENT'] == 0 ? 0 :
-                number_format(Comment::find()->where([
+                $temp['COMMENT'] ? number_format(Comment::find()->where([
                         'between',
                         'created_at',
                         strtotime(date('Y-m-d 00:00:00')),
                         time()
-                    ])->count('id') / $temp['COMMENT'] * 100, 2)
+                    ])->count('id') / $temp['COMMENT'] * 100, 2) : $percent
             ],
             'USER' => [
                 $temp['USER'],
-                $temp['USER'] == 0 ? 0 :
-                number_format(User::find()->where([
+                $temp['USER'] ? number_format(User::find()->where([
                         'between',
                         'created_at',
                         strtotime(date('Y-m-01')),
                         strtotime(date('Y-m-01 23:59:59') . " +1 month -1 day")
-                    ])->count('id') / $temp['USER'] * 100, 2)
+                    ])->count('id') / 1 * 100, 2) : $percent
             ],
             'FRIEND_LINK' => [
                 $temp['FRIEND_LINK'],
-                $temp['FRIEND_LINK'] == 0 ? 0 :
-                number_format(FriendlyLink::find()->where([
+                $temp['FRIEND_LINK'] ? number_format(FriendlyLink::find()->where([
                         'between',
                         'created_at',
                         strtotime(date('Y-m-01')),
                         strtotime(date('Y-m-01 23:59:59') . " +1 month -1 day")
-                    ])->count('id') / $temp['FRIEND_LINK'] * 100, 2)
+                    ])->count('id') / $temp['FRIEND_LINK'] * 100, 2) : $percent
             ],
         ];
         $comments = BackendComment::getRecentComments(6);
@@ -181,7 +176,7 @@ class SiteController extends \yii\web\Controller
     }
 
     /**
-     * 管理员登陆
+     * 管理员登录
      *
      * @return string|\yii\web\Response
      */
@@ -202,7 +197,7 @@ class SiteController extends \yii\web\Controller
     }
 
     /**
-     * 管理员退出登陆
+     * 管理员退出登录
      *
      * @return \yii\web\Response
      */
@@ -265,8 +260,7 @@ class SiteController extends \yii\web\Controller
             return $this->render('error', [
                 'code' => $statusCode,
                 'name' => $name,
-                'message' => $message,
-                'exception' => $exception,
+                'message' => $message
             ]);
         }
     }

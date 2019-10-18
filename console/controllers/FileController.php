@@ -9,7 +9,7 @@
 namespace console\controllers;
 
 use common\helpers\Util;
-use yii;
+use Yii;
 use backend\models\ArticleContent;
 use common\models\FriendlyLink;
 use common\models\Article;
@@ -32,18 +32,18 @@ class FileController extends \yii\console\Controller
     public function actionDeleteUnused()
     {
         $articeThumb = [];
-        $rootPath = yii::getAlias('@frontend/web');
+        $rootPath = Yii::getAlias('@frontend/web');
         foreach (Article::find()->where(['<>', 'thumb', ''])->each(100) as $artice) {
-            $articeThumb[] = str_replace(yii::$app->params['site']['url'], $rootPath, $artice->thumb);
+            $articeThumb[] = str_replace(Yii::$app->params['site']['url'], $rootPath, $artice->thumb);
         }
 
         $articleContent = [];
         foreach (ArticleContent::find()->where(['<>', 'content', ''])->each(100) as $content) {
-            $content->content = str_replace(yii::$app->params['site']['url'], yii::$app->params['site']['sign'], $content->content);
-            preg_match_all('/<img.*src="(' . yii::$app->params['site']['sign'] . '.*)"/isU', $content->content, $matches);
+            $content->content = str_replace(Yii::$app->params['site']['url'], Yii::$app->params['site']['sign'], $content->content);
+            preg_match_all('/<img.*src="(' . Yii::$app->params['site']['sign'] . '.*)"/isU', $content->content, $matches);
             if (! empty($matches[1])) {
                 foreach ($matches[1] as $pic) {
-                    $articleContent[] = str_replace(yii::$app->params['site']['sign'], $rootPath, $pic);
+                    $articleContent[] = str_replace(Yii::$app->params['site']['sign'], $rootPath, $pic);
                 }
             }
         }
@@ -55,7 +55,7 @@ class FileController extends \yii\console\Controller
 
         $this->unusedFiles = array_merge($articeThumb, $articleContent, $friendlink);
 
-        $this->_deleteFileRecursive(yii::getAlias('@uploads'));
+        $this->_deleteFileRecursive(Yii::getAlias('@uploads'));
 
     }
 
@@ -96,7 +96,7 @@ class FileController extends \yii\console\Controller
      */
     public function actionPublish()
     {
-        $origin = yii::getAlias('@console/../');
+        $origin = Yii::getAlias('@console/../');
         $publishDir = $origin . '..' . DIRECTORY_SEPARATOR . 'publish';
         $temp = $publishDir . DIRECTORY_SEPARATOR;
         $needEmptyDirectories = [
@@ -112,7 +112,6 @@ class FileController extends \yii\console\Controller
             $temp . 'frontend' . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'uploads',
             $temp . 'frontend' . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'assets',
             $temp . 'frontend' . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'uploads',
-            $temp . 'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'conf',
             $temp . 'api' . DIRECTORY_SEPARATOR . 'runtime',
         ];
         FileHelper::copyDirectory($origin, $publishDir);
@@ -123,8 +122,7 @@ class FileController extends \yii\console\Controller
         }
         FileHelper::removeDirectory($publishDir . DIRECTORY_SEPARATOR . '.git');
         FileHelper::removeDirectory($publishDir . DIRECTORY_SEPARATOR . '.idea');
-        FileHelper::createDirectory($publishDir . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'conf', 0777);
-        if( file_exists($publishDir . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'conf' . DIRECTORY_SEPARATOR . 'install.lock') ) unlink($publishDir . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .'conf' . DIRECTORY_SEPARATOR . 'install.lock');
+        if( file_exists($publishDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install.lock') ) unlink($publishDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install.lock');
         file_put_contents($temp . 'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main-local.php', "<?php return [];?>" );
         //passthru("composer archive --dir=$publishDir --format=zip");
         $this->stdout('Copy Success' . "\n", Console::FG_GREEN);
@@ -155,7 +153,7 @@ class FileController extends \yii\console\Controller
         //var_dump($str);exit;
         file_put_contents('db.txt', $str, FILE_APPEND);exit;
         $str = '';
-        $authManager = yii::$app->getAuthManager();
+        $authManager = Yii::$app->getAuthManager();
         $permissions = $authManager->getPermissions();
         $columns = array_keys((array)$permissions['/setting/website:GET']);
         $str = "[";
@@ -218,7 +216,7 @@ class FileController extends \yii\console\Controller
         //var_dump($str);exit;
         file_put_contents('db.txt', $str, FILE_APPEND);exit;
         $str = '';
-        $authManager = yii::$app->getAuthManager();
+        $authManager = Yii::$app->getAuthManager();
         $permissions = $authManager->getPermissions();
         $columns = array_keys((array)$permissions['/setting/website:GET']);
         $str = "[";
@@ -245,7 +243,7 @@ class FileController extends \yii\console\Controller
 
     public function actionGenArticleThumbnails()
     {
-        $path = yii::getAlias("@uploads/article/thumb/");
+        $path = Yii::getAlias("@uploads/article/thumb/");
         $fp = opendir($path);
         while (($file = readdir($fp)) != false){
             if( $file == '.' || $file == '..' ) continue;

@@ -21,7 +21,7 @@ use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 
 $this->title = "Category";
-$this->params['breadcrumbs'][] = yii::t('app', 'Category');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Category');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Category');
                         ],
                         [
                             'attribute' => 'name',
-                            'label' => yii::t('app', 'Name'),
+                            'label' => Yii::t('app', 'Name'),
                             'format' => 'html',
                             'value' => function ($model, $key, $index, $column) {
                                 return str_repeat('--', $model['level']) . $model['name'];
@@ -48,37 +48,40 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Category');
                         ],
                         [
                             'attribute' => 'alias',
-                            'label' => yii::t('app', 'Alias'),
+                            'label' => Yii::t('app', 'Alias'),
                         ],
                         [
                             'class' => SortColumn::className(),
-                            'label' => yii::t('app', 'Sort')
+                            'primaryKey' => function($model){
+                                return ["id" => $model["id"]];
+                            },
+                            'label' => Yii::t('app', 'Sort')
                         ],
                         [
                             'class' => DateColumn::className(),
-                            'label' => yii::t('app', 'Created At'),
+                            'label' => Yii::t('app', 'Created At'),
                             'attribute' => 'created_at',
                         ],
                         [
                             'class' => DateColumn::className(),
-                            'label' => yii::t('app', 'Updated At'),
+                            'label' => Yii::t('app', 'Updated At'),
                             'attribute' => 'updated_at',
                         ],
                         [
                             'class' => ActionColumn::className(),
                             'buttons' => [
                                 'create' => function ($url, $model, $key) {
-                                    return Html::a('<i class="fa  fa-plus" aria-hidden="true"></i> ' . Yii::t('app', 'Create'), Url::to([
+                                    return Html::a('<i class="fa  fa-plus" aria-hidden="true"></i> ', Url::to([
                                         'create',
                                         'parent_id' => $model['id']
                                     ]), [
                                         'title' => Yii::t('app', 'Create'),
                                         'data-pjax' => '0',
-                                        'class' => 'btn btn-white btn-sm J_menuItem',
+                                        'class' => 'btn-sm J_menuItem',
                                     ]);
                                 }
                             ],
-                            'template' => '{create} {update} {delete}',
+                            'template' => '{create} {view-layer} {update} {delete}',
                         ]
                     ]
                 ]) ?>

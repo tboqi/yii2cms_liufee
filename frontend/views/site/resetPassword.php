@@ -13,11 +13,8 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = yii::t('app', 'Reset Password') . '-' . yii::$app->feehi->website_title;
+$this->title = Yii::t('app', 'Reset Password') . '-' . Yii::$app->feehi->website_title;
 $this->params['breadcrumbs'][] = $this->title;
-
-$this->registerMetaTag(['keywords' => yii::$app->feehi->seo_keywords]);
-$this->registerMetaTag(['description' => yii::$app->feehi->seo_description]);
 ?>
 <div class="content-wrap">
     <div class="site-signup article-content" style="width:100%; margin: 0 auto">
@@ -32,7 +29,7 @@ $this->registerMetaTag(['description' => yii::$app->feehi->seo_description]);
                 width: 240px;
             }
         </style>
-        <p><?= yii::t('app', 'Please choose your new password') ?>:</p>
+        <p><?= Yii::t('app', 'Please choose your new password') ?>:</p>
 
         <div class="row">
             <div class="col-lg-5">
@@ -41,7 +38,7 @@ $this->registerMetaTag(['description' => yii::$app->feehi->seo_description]);
                 <?= $form->field($model, 'password', ['template' => "<div style='position:relative'>{label}{input}\n{error}\n{hint}</div>"])->textInput(['autofocus' => true]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton(yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

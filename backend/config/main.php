@@ -23,6 +23,7 @@ return [
             'returnUrlParam' => '_backend_returnUrl',
         ],
         'session' => [
+            'name' => 'BACKEND_FEEHICMS',
             'timeout' => 1440,//session过期时间，单位为秒
         ],
         'log' => [//此项具体详细配置，请访问http://wiki.feehi.com/index.php?title=Yii2_log
@@ -31,8 +32,15 @@ return [
                 [
                     'class' => yii\log\FileTarget::className(),//当触发levels配置的错误级别时，保存到日志文件
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/'.date('Y/m/d') . '.log',
                 ],
                 [
+                    /**
+                    注：此配置可能造成：
+                        1.当打开的页面包含错误时，响应缓慢。若您配置的发件箱不存在或连不上一直等待超时。
+                        2.如果common/config/main.php mail useFileTransport为true时，并不会真发邮件，只把邮件写到runtime目录，很容易造成几十个G吃硬盘。
+                        如您不需要发送邮件提醒建议删除此配置
+                     */
                     'class' => yii\log\EmailTarget::className(),//当触发levels配置的错误级别时，发送到message to配置的邮箱中（请改成自己的邮箱）
                     'levels' => ['error', 'warning'],
                     /*'categories' => [//默认匹配所有分类。启用此项后，仅匹配数组中的分类信息会触发邮件提醒（白名单）
@@ -56,6 +64,11 @@ return [
         ],
         'request' => [
             'csrfParam' =>'_csrf_backend',
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => false,//true 美化路由(注:需要配合web服务器配置伪静态，详见http://doc.feehi.com/install.html), false 不美化路由
+            'showScriptName' => true,//隐藏index.php
+            'enableStrictParsing' => false,
         ],
         'i18n' => [
             'translations' => [//多语言包设置
@@ -83,42 +96,48 @@ return [
             'linkAssets' => false,//若为unix like系统这里可以修改成true则创建css js文件软链接到assets而不是拷贝css js到assets目录
             'bundles' => [
                 backend\assets\AppAsset::className() => [
+                    'sourcePath' => '@backend/web/static',
                     'css' => [
-                        'a' => 'static/css/bootstrap.min14ed.css?v=3.3.6',
-                        'b' => 'static/css/font-awesome.min93e3.css?v=4.4.0',
-                        'c' => 'static/css/animate.min.css',
-                        'd' => 'static/css/style.min862f.css?v=4.1.0',
-                        'f' => 'static/js/plugins/layer/laydate/theme/default/laydate.css',
-                        'g' => 'static/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
-                        'h' => 'static/css/plugins/toastr/toastr.min.css',
+                        'a' => 'css/bootstrap.min14ed.css?v=3.3.6',
+                        'b' => 'css/font-awesome.min93e3.css?v=4.4.0',
+                        'c' => 'css/animate.min.css',
+                        'd' => 'css/style.min862f.css?v=4.1.0',
+                        'f' => 'js/plugins/layer/laydate/theme/default/laydate.css',
+                        'g' => 'css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+                        'h' => 'css/plugins/toastr/toastr.min.css',
+                        'i' => 'css/plugins/chosen/chosen.css',
+                        'j' => 'css/feehi.css',
 
                     ],
                     'js' => [
-                        'a' => 'static/js/feehi.js',
-                        'c' => 'static/js/plugins/layer/laydate/laydate.js',
-                        'd' => 'static/js/plugins/layer/layer.min.js',
-                        'e' => 'static/js/plugins/prettyfile/bootstrap-prettyfile.js',
-                        'f' => 'static/js/plugins/toastr/toastr.min.js',
+                        'a' => 'js/feehi.js',
+                        'b' => 'js/plugins/layer/laydate/laydate.js',
+                        'c' => 'js/plugins/layer/layer.min.js',
+                        'd' => 'js/plugins/prettyfile/bootstrap-prettyfile.js',
+                        'e' => 'js/plugins/toastr/toastr.min.js',
+                        'f' => 'js/plugins/chosen/chosen.jquery.js',
                     ],
                 ],
                 backend\assets\IndexAsset::className() => [
+                    'sourcePath' => '@backend/web/static',
                     'css' => [
-                        'a' => 'static/css/bootstrap.min.css',
-                        'b' => 'static/css/font-awesome.min93e3.css?v=4.4.0',
-                        'c' => 'static/css/style.min862f.css?v=4.1.0',
+                        'a' => 'css/bootstrap.min.css',
+                        'b' => 'css/font-awesome.min93e3.css?v=4.4.0',
+                        'c' => 'css/style.min862f.css?v=4.1.0',
                     ],
                     'js' => [
-                        'a' => "static/js/jquery.min.js?v=2.1.4",
-                        'b' => "static/js/bootstrap.min.js?v=3.3.6",
-                        'c' => "static/js/plugins/metisMenu/jquery.metisMenu.js",
-                        'd' => "static/js/plugins/slimscroll/jquery.slimscroll.min.js",
-                        'e' => "static/js/plugins/layer/layer.min.js",
-                        'f' => "static/js/hplus.min.js?v=4.1.0",
-                        'g' => "static/js/contabs.min.js",
-                        'h' => "static/js/plugins/pace/pace.min.js",
+                        'a' => "js/jquery.min.js?v=2.1.4",
+                        'b' => "js/bootstrap.min.js?v=3.3.6",
+                        'c' => "js/plugins/metisMenu/jquery.metisMenu.js",
+                        'd' => "js/plugins/slimscroll/jquery.slimscroll.min.js",
+                        'e' => "js/plugins/layer/layer.min.js",
+                        'f' => "js/hplus.min.js?v=4.1.0",
+                        'g' => "js/contabs.min.js",
+                        'h' => "js/plugins/pace/pace.min.js",
                     ]
                 ],
                 backend\assets\UeditorAsset::className() => [
+                    'sourcePath' => '@backend/web/static/js/plugins/ueditor',
                     'css' => [
                         'a' => 'ueditor.all.min.js'
                     ],

@@ -81,7 +81,7 @@ CREATE TABLE `%__prefix__%article` (
   `scan_count` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '浏览次数',
   `comment_count` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '浏览次数',
   `can_comment` smallint(6) unsigned NOT NULL DEFAULT '1' COMMENT '是否可评论.0否,1是',
-  `visibility` smallint(6) unsigned NOT NULL DEFAULT '1' COMMENT '文章可见性.1.公开,2.评论可见,3.加密文章,4.登陆可见',
+  `visibility` smallint(6) unsigned NOT NULL DEFAULT '1' COMMENT '文章可见性.1.公开,2.评论可见,3.加密文章,4.登录可见',
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '文章明文密码',
   `flag_headline` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '头条.0否,1.是',
   `flag_recommend` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '推荐.0否,1.是',
@@ -90,6 +90,7 @@ CREATE TABLE `%__prefix__%article` (
   `flag_roll` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '滚动.0否,1.是',
   `flag_bold` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '加粗.0否,1.是',
   `flag_picture` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '图片.0否,1.是',
+  `template` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '文章模板',
   `created_at` int(11) unsigned NOT NULL COMMENT '创建时间',
   `updated_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最后修改时间',
   PRIMARY KEY (`id`),
@@ -99,31 +100,31 @@ CREATE TABLE `%__prefix__%article` (
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-INSERT INTO `%__prefix__%article` VALUES ('1', '3', '0', '高效快速地加载 AngularJS 视图', '', '当AngularJS应用程序变大时，很多问题就开始显现出来了，比如多层级视图的加载问题，如果在子视图显示之前没有预加载，则可能在需要展示时，发生视觉闪烁的情况。这种问题在网络缓慢，或者服务器使用较慢的https连接时更容易出现。', '/uploads/article/thumb/2016071211354628.jpg', '高效快速地加载 AngularJS 视图', 'JavaScript, AngularJS', '当AngularJS应用程序变大时，很多问题就开始显现出来了，比如多层级视图的加载问题，如果在子视图显示之前没有预加载，则可能在需要展示时，发生视觉闪烁的情况。这种问题在网络缓慢，或者服务器使用较慢的https连接时更容易出现。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468294546', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('2', '3', '0', '如何定位 Node.js 的内存泄漏', '', '在 《一次 Node.js 应用内存暴涨分析》中，我们处理了一个 Node.js vm 引发的内存泄漏问题，处理过程也是比较艰辛。而在我们实际开发中，可能经常会碰到内存泄漏的问题，但很多情况下，我们对于这种问题的处理是有些迷茫的，没有一定的操作流程，效率比较低。虽然这种问题对于经验的要求比较高，但如果有一个简单的排查流程，还是会有一定帮助的。', '/uploads/article/thumb/201607121141407.png', '', '', '在 《一次 Node.js 应用内存暴涨分析》中，我们处理了一个 Node.js vm 引发的内存泄漏问题，处理过程也是比较艰辛。而在我们实际开发中，可能经常会碰到内存泄漏的问题，但很多情况下，我们对于这种问题的处理是有些迷茫的，没有一定的操作流程，效率比较低。虽然这种问题对于经验的要求比较高，但如果有一个简单的排查流程，还是会有一定帮助的。', '1', '0', '1', 'admin', '3', '0', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '1468294900', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('3', '1', '0', 'Hack：用于HHVM的一种新编程语言', '', '', '/uploads/article/thumb/2016071212382956.jpg', '', 'Facebook, hack, php', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '1', '0', '0', '1', '1', '0', '0', '1468298309', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('4', '3', '0', '抛弃jQuery，拥抱原生JavaScript', '', '原生javascript', '/uploads/article/thumb/2016071212414099.png', '抛弃jQuery，拥抱原生JavaScript', 'jquery,javascript,web', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468298500', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('5', '2', '0', '[JAVA · 初级]：GC-垃圾回收机制', '', '在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象；而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。', '/uploads/article/thumb/2016071212441669.jpg', '[JAVA · 初级]：GC-垃圾回收机制', 'gc,垃圾回收,java', '在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象；而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468298628', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('6', '1', '0', 'PHP 7.0.2正式版发布：WordPress速度提升3倍！', '', '提到PHP，肯定会有人说这是世界上最好的编程语言。', '/uploads/article/thumb/2016071212472374.jpeg', 'PHP 7.0.2正式版发布：WordPress速度提升3倍！', 'php7,php,wordpress', '提到PHP，肯定会有人说这是世界上最好的编程语言。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468298843', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('7', '3', '0', '为何要学HTML5开发?HTML5发展前景如何？', '', '', '', '为何要学HTML5开发?HTML5发展前景如何？', 'html,html5', '', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468298894', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('8', '2', '0', 'Spring知识点提炼', '', 'spring框架', '/uploads/article/thumb/2016071212525610.jpg', 'Spring知识点提炼', 'spring,java', 'spring框架', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '1468299176', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('9', '3', '0', 'CSS代码重构与优化之路', '', '着项目规模的增加，项目中的CSS代码也会越来越多，如果没有及时对CSS代码进行维护，CSS代码不断会越来越多。', '/uploads/article/thumb/2016071212553820.jpeg', 'CSS代码重构与优化之路', 'css,重构', '着项目规模的增加，项目中的CSS代码也会越来越多，如果没有及时对CSS代码进行维护，CSS代码不断会越来越多。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468299338', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('10', '1', '0', 'PHP分页技术的代码和示例', '', '分页是目前在显示大量结果时所采用的最好的方式。', '/uploads/article/thumb/2016071212580919.png', 'PHP分页技术的代码和示例', 'php,分页,php分页', '分页是目前在显示大量结果时所采用的最好的方式。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '1468299489', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('11', '1', '0', '10个免费下载PHP脚本的网站', '', '免费的PHP脚本下载', '/uploads/article/thumb/2016071213000120.png', '10个免费下载PHP脚本的网站', 'php脚本,下载,代码下载', '免费的PHP脚本下载', '1', '0', '1', 'admin', '4', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '1468299601', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('12', '1', '0', '趣文：如果编程语言是女人（新编版）', '', '语言趣文', '/uploads/article/thumb/2016071213020658.png', '趣文：如果编程语言是女人（新编版）', 'java, Javascript, Lisp, php, Python, Ruby, 编程语言, 趣文', '语言趣文', '1', '0', '1', 'admin', '0', '3', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '1468299726', '1476717891');
-INSERT INTO `%__prefix__%article` VALUES ('13', '3', '0', '浏览器缓存机制', '', '浏览器缓存机制，其实主要就是HTTP协议定义的缓存机制（如： Expires； Cache-control等）。', '/uploads/article/thumb/2016071213054793.jpg', '浏览器缓存机制', '缓存,浏览器缓存,http协议', '浏览器缓存机制，其实主要就是HTTP协议定义的缓存机制（如： Expires； Cache-control等）。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468299947', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('14', '3', '0', 'JavaScript 统治的世界，烤面包机将能运行 JS 了', '', '从浏览器到手机，从平板电脑到桌面电脑，从工业自动化到最小的微控制器——最近JavaScript 似乎蔓延到了最意想不到的地方，不远的将来，你的烤面包机也将会运行 JavaScript ……。但是为什么？', '', 'JavaScript 统治的世界，烤面包机将能运行 JS 了', 'javascript,流行', '从浏览器到手机，从平板电脑到桌面电脑，从工业自动化到最小的微控制器——最近JavaScript 似乎蔓延到了最意想不到的地方，不远的将来，你的烤面包机也将会运行 JavaScript ……。但是为什么？', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468300042', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('15', '2', '0', '给Java说句公道话', '', '有些人问我，在现有的语言里面，有什么好的推荐？我说：“Java。” 他们很惊讶：“什么？Java！” 所以我现在来解释一下。', '/uploads/article/thumb/2016071213095350.jpg', '给Java说句公道话', 'java', '有些人问我，在现有的语言里面，有什么好的推荐？我说：“Java。” 他们很惊讶：“什么？Java！” 所以我现在来解释一下。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '1468300193', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('16', '2', '0', 'Java编程入门（1.6）：现代用户界面', '', '算机刚问世时，普通人——包括大多数程序员——都不允许靠近计算机。', '/uploads/article/thumb/2016071214100948.jpg', 'Java编程入门（1.6）：现代用户界面', 'java,用户界面', '算机刚问世时，普通人——包括大多数程序员——都不允许靠近计算机。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '1468300356', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('17', '3', '0', '精简页面的样式文件，去掉不用的样式', '', '精简css样式', '', '精简页面的样式文件，去掉不用的样式', 'css,样式', '精简css样式', '1', '0', '1', 'admin', '6', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468300509', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('18', '2', '0', 'Java编程入门：前言', '', 'Java编程入门》是一本使用Java作为入门语言的免费计算机编程课本', '/uploads/article/thumb/2016071213165538.jpg', 'Java编程入门：前言', 'java,入门,编程书籍', 'Java编程入门》是一本使用Java作为入门语言的免费计算机编程课本', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '1468300615', '1476717915');
-INSERT INTO `%__prefix__%article` VALUES ('19', '2', '0', 'Java 8最快的垃圾搜集器是什么？', '', 'OpenJDK 8 有多种 GC（Garbage Collector）算法，如 Parallel GC、CMS 和 G1。哪一个才是最快的呢？如果在 Java 9 中将 Java 8 默认的 GC 从 Parallel GC 改为 G1 （目前只是建议）将会怎么样呢？让我们对此进行基准测试。', '/uploads/article/thumb/2016071213182356.jpg', 'Java 8最快的垃圾搜集器是什么？', 'java,java8,垃圾收集', 'OpenJDK 8 有多种 GC（Garbage Collector）算法，如 Parallel GC、CMS 和 G1。哪一个才是最快的呢？如果在 Java 9 中将 Java 8 默认的 GC 从 Parallel GC 改为 G1 （目前只是建议）将会怎么样呢？让我们对此进行基准测试。', '1', '0', '1', 'admin', '33', '0', '1', '1', '', '1', '0', '0', '1', '0', '0', '0', '1468300703', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('20', '2', '0', '使用Memcached改进Java企业级应用性能（1）：架构和设置', '', 'Memcached由Danga Interactive开发，用来提升LiveJournal.com网站性能。Memcached分布式架构支持众多的社交网络应用，Twitter、Facebook还有Wikipedia。在接下来的两部分教程中，Sunil Patil介绍了Memcached分布式哈希表架构，以及利用它帮助你为数据驱动Java企业应用做数据缓存。', '/uploads/article/thumb/201607121325288.png', '使用Memcached改进Java企业级应用性能（1）：架构和设置', 'java,memcached', 'Memcached由Danga Interactive开发，用来提升LiveJournal.com网站性能。Memcached分布式架构支持众多的社交网络应用，Twitter、Facebook还有Wikipedia。在接下来的两部分教程中，Sunil Patil介绍了Memcached分布式哈希表架构，以及利用它帮助你为数据驱动Java企业应用做数据缓存。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468300831', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('21', '2', '0', 'JVM的相关知识整理和学习', '', '诺依曼体系结构中，指出计算机处理的数据和指令都是二进制数，采用存储程序方式不加区分的存储在同一个存储器里，并且顺序执行，指令由操作码和地址码组成，操作码决定了操作类型和所操作的数的数字类型，地址码则指出地址码和操作数。', '/uploads/article/thumb/2016071213203123.jpg', 'JVM的相关知识整理和学习', 'jvm,java', '诺依曼体系结构中，指出计算机处理的数据和指令都是二进制数，采用存储程序方式不加区分的存储在同一个存储器里，并且顺序执行，指令由操作码和地址码组成，操作码决定了操作类型和所操作的数的数字类型，地址码则指出地址码和操作数。', '1', '0', '1', 'admin', '0', '1', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '1468300831', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('22', '2', '0', '关于Java集合的小抄', '', '在尽可能短的篇幅里，将所有集合与并发集合的特征，实现方式，性能捋一遍。适合所有”精通Java”其实还不那么自信的人阅读。', '/uploads/article/thumb/2016071213224495.jpg', '关于Java集合的小抄', 'java,java集合', '在尽可能短的篇幅里，将所有集合与并发集合的特征，实现方式，性能捋一遍。适合所有”精通Java”其实还不那么自信的人阅读。', '1', '0', '1', 'admin', '0', '2', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468300964', '1476717385');
-INSERT INTO `%__prefix__%article` VALUES ('23', '0', '2', '关于我们', 'about', '', '', '', '', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468309252', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('24', '0', '2', '联系方式', 'contact', '', '', '', '', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468309318', '1476717356');
-INSERT INTO `%__prefix__%article` VALUES ('25', '0', '0', 'dfdf', 'dfd', 'fsafsdfsdf', '', '', '', '', '0', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '1468898361', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('1', '3', '0', '高效快速地加载 AngularJS 视图', '', '当AngularJS应用程序变大时，很多问题就开始显现出来了，比如多层级视图的加载问题，如果在子视图显示之前没有预加载，则可能在需要展示时，发生视觉闪烁的情况。这种问题在网络缓慢，或者服务器使用较慢的https连接时更容易出现。', '/uploads/article/thumb/2016071211354628.jpg', '高效快速地加载 AngularJS 视图', 'JavaScript, AngularJS', '当AngularJS应用程序变大时，很多问题就开始显现出来了，比如多层级视图的加载问题，如果在子视图显示之前没有预加载，则可能在需要展示时，发生视觉闪烁的情况。这种问题在网络缓慢，或者服务器使用较慢的https连接时更容易出现。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468294546', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('2', '3', '0', '如何定位 Node.js 的内存泄漏', '', '在 《一次 Node.js 应用内存暴涨分析》中，我们处理了一个 Node.js vm 引发的内存泄漏问题，处理过程也是比较艰辛。而在我们实际开发中，可能经常会碰到内存泄漏的问题，但很多情况下，我们对于这种问题的处理是有些迷茫的，没有一定的操作流程，效率比较低。虽然这种问题对于经验的要求比较高，但如果有一个简单的排查流程，还是会有一定帮助的。', '/uploads/article/thumb/201607121141407.png', '', '', '在 《一次 Node.js 应用内存暴涨分析》中，我们处理了一个 Node.js vm 引发的内存泄漏问题，处理过程也是比较艰辛。而在我们实际开发中，可能经常会碰到内存泄漏的问题，但很多情况下，我们对于这种问题的处理是有些迷茫的，没有一定的操作流程，效率比较低。虽然这种问题对于经验的要求比较高，但如果有一个简单的排查流程，还是会有一定帮助的。', '1', '0', '1', 'admin', '3', '0', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '', '1468294900', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('3', '1', '0', 'Hack：用于HHVM的一种新编程语言', '', '', '/uploads/article/thumb/2016071212382956.jpg', '', 'Facebook, hack, php', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '1', '0', '0', '1', '1', '0', '0', '', '1468298309', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('4', '3', '0', '抛弃jQuery，拥抱原生JavaScript', '', '原生javascript', '/uploads/article/thumb/2016071212414099.png', '抛弃jQuery，拥抱原生JavaScript', 'jquery,javascript,web', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468298500', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('5', '2', '0', '[JAVA · 初级]：GC-垃圾回收机制', '', '在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象；而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。', '/uploads/article/thumb/2016071212441669.jpg', '[JAVA · 初级]：GC-垃圾回收机制', 'gc,垃圾回收,java', '在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象；而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468298628', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('6', '1', '0', 'PHP 7.0.2正式版发布：WordPress速度提升3倍！', '', '提到PHP，肯定会有人说这是世界上最好的编程语言。', '/uploads/article/thumb/2016071212472374.jpeg', 'PHP 7.0.2正式版发布：WordPress速度提升3倍！', 'php7,php,wordpress', '提到PHP，肯定会有人说这是世界上最好的编程语言。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468298843', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('7', '3', '0', '为何要学HTML5开发?HTML5发展前景如何？', '', '', '', '为何要学HTML5开发?HTML5发展前景如何？', 'html,html5', '', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468298894', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('8', '2', '0', 'Spring知识点提炼', '', 'spring框架', '/uploads/article/thumb/2016071212525610.jpg', 'Spring知识点提炼', 'spring,java', 'spring框架', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '', '1468299176', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('9', '3', '0', 'CSS代码重构与优化之路', '', '着项目规模的增加，项目中的CSS代码也会越来越多，如果没有及时对CSS代码进行维护，CSS代码不断会越来越多。', '/uploads/article/thumb/2016071212553820.jpeg', 'CSS代码重构与优化之路', 'css,重构', '着项目规模的增加，项目中的CSS代码也会越来越多，如果没有及时对CSS代码进行维护，CSS代码不断会越来越多。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468299338', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('10', '1', '0', 'PHP分页技术的代码和示例', '', '分页是目前在显示大量结果时所采用的最好的方式。', '/uploads/article/thumb/2016071212580919.png', 'PHP分页技术的代码和示例', 'php,分页,php分页', '分页是目前在显示大量结果时所采用的最好的方式。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '', '1468299489', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('11', '1', '0', '10个免费下载PHP脚本的网站', '', '免费的PHP脚本下载', '/uploads/article/thumb/2016071213000120.png', '10个免费下载PHP脚本的网站', 'php脚本,下载,代码下载', '免费的PHP脚本下载', '1', '0', '1', 'admin', '4', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '', '1468299601', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('12', '1', '0', '趣文：如果编程语言是女人（新编版）', '', '语言趣文', '/uploads/article/thumb/2016071213020658.png', '趣文：如果编程语言是女人（新编版）', 'java, Javascript, Lisp, php, Python, Ruby, 编程语言, 趣文', '语言趣文', '1', '0', '1', 'admin', '0', '3', '1', '1', '', '0', '0', '0', '1', '0', '0', '0', '', '1468299726', '1476717891');
+INSERT INTO `%__prefix__%article` VALUES ('13', '3', '0', '浏览器缓存机制', '', '浏览器缓存机制，其实主要就是HTTP协议定义的缓存机制（如： Expires； Cache-control等）。', '/uploads/article/thumb/2016071213054793.jpg', '浏览器缓存机制', '缓存,浏览器缓存,http协议', '浏览器缓存机制，其实主要就是HTTP协议定义的缓存机制（如： Expires； Cache-control等）。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468299947', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('14', '3', '0', 'JavaScript 统治的世界，烤面包机将能运行 JS 了', '', '从浏览器到手机，从平板电脑到桌面电脑，从工业自动化到最小的微控制器——最近JavaScript 似乎蔓延到了最意想不到的地方，不远的将来，你的烤面包机也将会运行 JavaScript ……。但是为什么？', '', 'JavaScript 统治的世界，烤面包机将能运行 JS 了', 'javascript,流行', '从浏览器到手机，从平板电脑到桌面电脑，从工业自动化到最小的微控制器——最近JavaScript 似乎蔓延到了最意想不到的地方，不远的将来，你的烤面包机也将会运行 JavaScript ……。但是为什么？', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468300042', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('15', '2', '0', '给Java说句公道话', '', '有些人问我，在现有的语言里面，有什么好的推荐？我说：“Java。” 他们很惊讶：“什么？Java！” 所以我现在来解释一下。', '/uploads/article/thumb/2016071213095350.jpg', '给Java说句公道话', 'java', '有些人问我，在现有的语言里面，有什么好的推荐？我说：“Java。” 他们很惊讶：“什么？Java！” 所以我现在来解释一下。', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '', '1468300193', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('16', '2', '0', 'Java编程入门（1.6）：现代用户界面', '', '算机刚问世时，普通人——包括大多数程序员——都不允许靠近计算机。', '/uploads/article/thumb/2016071214100948.jpg', 'Java编程入门（1.6）：现代用户界面', 'java,用户界面', '算机刚问世时，普通人——包括大多数程序员——都不允许靠近计算机。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '1', '0', '0', '0', '0', '', '1468300356', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('17', '3', '0', '精简页面的样式文件，去掉不用的样式', '', '精简css样式', '', '精简页面的样式文件，去掉不用的样式', 'css,样式', '精简css样式', '1', '0', '1', 'admin', '6', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468300509', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('18', '2', '0', 'Java编程入门：前言', '', 'Java编程入门》是一本使用Java作为入门语言的免费计算机编程课本', '/uploads/article/thumb/2016071213165538.jpg', 'Java编程入门：前言', 'java,入门,编程书籍', 'Java编程入门》是一本使用Java作为入门语言的免费计算机编程课本', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '', '1468300615', '1476717915');
+INSERT INTO `%__prefix__%article` VALUES ('19', '2', '0', 'Java 8最快的垃圾搜集器是什么？', '', 'OpenJDK 8 有多种 GC（Garbage Collector）算法，如 Parallel GC、CMS 和 G1。哪一个才是最快的呢？如果在 Java 9 中将 Java 8 默认的 GC 从 Parallel GC 改为 G1 （目前只是建议）将会怎么样呢？让我们对此进行基准测试。', '/uploads/article/thumb/2016071213182356.jpg', 'Java 8最快的垃圾搜集器是什么？', 'java,java8,垃圾收集', 'OpenJDK 8 有多种 GC（Garbage Collector）算法，如 Parallel GC、CMS 和 G1。哪一个才是最快的呢？如果在 Java 9 中将 Java 8 默认的 GC 从 Parallel GC 改为 G1 （目前只是建议）将会怎么样呢？让我们对此进行基准测试。', '1', '0', '1', 'admin', '33', '0', '1', '1', '', '1', '0', '0', '1', '0', '0', '0', '', '1468300703', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('20', '2', '0', '使用Memcached改进Java企业级应用性能（1）：架构和设置', '', 'Memcached由Danga Interactive开发，用来提升LiveJournal.com网站性能。Memcached分布式架构支持众多的社交网络应用，Twitter、Facebook还有Wikipedia。在接下来的两部分教程中，Sunil Patil介绍了Memcached分布式哈希表架构，以及利用它帮助你为数据驱动Java企业应用做数据缓存。', '/uploads/article/thumb/201607121325288.png', '使用Memcached改进Java企业级应用性能（1）：架构和设置', 'java,memcached', 'Memcached由Danga Interactive开发，用来提升LiveJournal.com网站性能。Memcached分布式架构支持众多的社交网络应用，Twitter、Facebook还有Wikipedia。在接下来的两部分教程中，Sunil Patil介绍了Memcached分布式哈希表架构，以及利用它帮助你为数据驱动Java企业应用做数据缓存。', '1', '0', '1', 'admin', '1', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468300831', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('21', '2', '0', 'JVM的相关知识整理和学习', '', '诺依曼体系结构中，指出计算机处理的数据和指令都是二进制数，采用存储程序方式不加区分的存储在同一个存储器里，并且顺序执行，指令由操作码和地址码组成，操作码决定了操作类型和所操作的数的数字类型，地址码则指出地址码和操作数。', '/uploads/article/thumb/2016071213203123.jpg', 'JVM的相关知识整理和学习', 'jvm,java', '诺依曼体系结构中，指出计算机处理的数据和指令都是二进制数，采用存储程序方式不加区分的存储在同一个存储器里，并且顺序执行，指令由操作码和地址码组成，操作码决定了操作类型和所操作的数的数字类型，地址码则指出地址码和操作数。', '1', '0', '1', 'admin', '0', '1', '1', '1', '', '1', '0', '0', '0', '0', '0', '0', '', '1468300831', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('22', '2', '0', '关于Java集合的小抄', '', '在尽可能短的篇幅里，将所有集合与并发集合的特征，实现方式，性能捋一遍。适合所有”精通Java”其实还不那么自信的人阅读。', '/uploads/article/thumb/2016071213224495.jpg', '关于Java集合的小抄', 'java,java集合', '在尽可能短的篇幅里，将所有集合与并发集合的特征，实现方式，性能捋一遍。适合所有”精通Java”其实还不那么自信的人阅读。', '1', '0', '1', 'admin', '0', '2', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468300964', '1476717385');
+INSERT INTO `%__prefix__%article` VALUES ('23', '0', '2', '关于我们', 'about', '', '', '', '', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468309252', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('24', '0', '2', '联系方式', 'contact', '', '', '', '', '', '1', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468309318', '1476717356');
+INSERT INTO `%__prefix__%article` VALUES ('25', '0', '0', 'dfdf', 'dfd', 'fsafsdfsdf', '', '', '', '', '0', '0', '1', 'admin', '0', '0', '1', '1', '', '0', '0', '0', '0', '0', '0', '0', '', '1468898361', '1476717356');
 
 -- ----------------------------
 -- Table structure for article_content
@@ -135,7 +136,7 @@ CREATE TABLE `%__prefix__%article_content` (
   `content` text COLLATE utf8_unicode_ci NOT NULL COMMENT '文章详细内容',
   PRIMARY KEY (`id`),
   KEY `fk_aid` (`aid`),
-  CONSTRAINT `fk_aid` FOREIGN KEY (`aid`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_aid` FOREIGN KEY (`aid`) REFERENCES `%__prefix__%article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -180,7 +181,7 @@ CREATE TABLE `%__prefix__%article_meta` (
   PRIMARY KEY (`id`),
   KEY `index_aid` (`aid`),
   KEY `index_key` (`key`),
-  CONSTRAINT `fk_article_meta_aid` FOREIGN KEY (`aid`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_article_meta_aid` FOREIGN KEY (`aid`) REFERENCES `%__prefix__%article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -245,7 +246,7 @@ CREATE TABLE `%__prefix__%auth_assignment` (
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_name`,`user_id`),
-  CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `%__prefix__%auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -261,123 +262,143 @@ CREATE TABLE `%__prefix__%auth_item` (
   `type` smallint(6) NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `data` blob,
+  `data` text,
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`),
   KEY `rule_name` (`rule_name`),
   KEY `idx-auth_item-type` (`type`),
-  CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `%__prefix__%auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of auth_item
 -- ----------------------------
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/create:GET', '2', '创建广告(查看)', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393131222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512383408', '1512722062');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/create:POST', '2', '创建广告(确定)', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393132222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512383484', '1512722063');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/delete:POST', '2', '删除广告', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393133222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512386749', '1512722063');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/index:GET', '2', '广告列表', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393130222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512382866', '1512722062');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/sort:POST', '2', '广告排序', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393136222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512399382', '1512722063');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/update:GET', '2', '修改广告(查看)', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393134222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512386694', '1512722063');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/ad/update:POST', '2', '修改广告(确定)', null, 0x733A37353A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22393135222C2263617465676F7279223A225C75356537665C7535343461227D223B, '1512386722', '1512722063');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/create:GET', '2', '创建后台用户(查看)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333132222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491145', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/create:POST', '2', '创建后台用户(确定)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333133222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491177', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/delete:POST', '2', '删除后台用户', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333136222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491283', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/index:GET', '2', '后台用户列表', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333130222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491096', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/update:GET', '2', '修改后台用户(查看)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333134222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491206', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/admin-user/update:POST', '2', '修改后台用户(确定)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333135222C2263617465676F7279223A225C75353430655C75353366305C75373532385C7536323337227D223B, '1505491257', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/create:GET', '2', '创建文章(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323031222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505486958', '1505626214');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/create:POST', '2', '创建文章(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323032222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505486994', '1505626214');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/delete:POST', '2', '删除文章', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323036222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505490012', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/index:GET', '2', '文章列表', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323030222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505486821', '1505626214');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/sort:POST', '2', '文章排序', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323035222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505627065', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/update:GET', '2', '修改文章(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323033222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505487091', '1505626214');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/article/update:POST', '2', '修改文章(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323034222C2263617465676F7279223A225C75363538375C7537616530227D223B, '1505487132', '1505626214');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-create:GET', '2', '创建banner(查看)', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383131222C2263617465676F7279223A2262616E6E6572227D223B, '1512391883', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-create:POST', '2', '创建banner(确定)', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383132222C2263617465676F7279223A2262616E6E6572227D223B, '1512391917', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-delete:POST', '2', '删除banner', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383136222C2263617465676F7279223A2262616E6E6572227D223B, '1512399348', '1512721982');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-sort:POST', '2', 'banner排序', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383135222C2263617465676F7279223A2262616E6E6572227D223B, '1512399382', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-update:GET', '2', '修改banner(查看)', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383133222C2263617465676F7279223A2262616E6E6572227D223B, '1512399264', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banner-update:POST', '2', '修改banner(确定)', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383134222C2263617465676F7279223A2262616E6E6572227D223B, '1512399300', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/banners:GET', '2', 'banner列表', null, 0x733A36393A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383130222C2263617465676F7279223A2262616E6E6572227D223B, '1512391845', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/create:GET', '2', '创建banner类型(查看)', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383031222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512383408', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/create:POST', '2', '创建banner类型(确定)', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383032222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512383484', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/delete:POST', '2', '删除banner类型', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383033222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512386749', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/index:GET', '2', 'banner类型列表', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383030222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512382866', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/sort:POST', '2', 'banner类型排序', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383036222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512399382', '1512721982');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/update:GET', '2', '修改banner类型(查看)', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383034222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512386694', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/banner/update:POST', '2', '修改banner类型(确定)', null, 0x733A38313A227B2267726F7570223A225C75386664305C75383432355C75376261315C7537343036222C22736F7274223A22383035222C2263617465676F7279223A2262616E6E65725C75376337625C7535373862227D223B, '1512386722', '1512400103');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/create:GET', '2', '创建分类(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323131222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489753', '1505626254');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/create:POST', '2', '创建分类(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323132222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489813', '1505626254');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/delete:POST', '2', '删除分类', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323136222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489938', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/index:GET', '2', '分类列表', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323130222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489718', '1505626254');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/sort:POST', '2', '分类排序', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323135222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505627133', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/update:GET', '2', '修改分类(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323133222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489845', '1505626254');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/category/update:POST', '2', '修改分类(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323134222C2263617465676F7279223A225C75353230365C7537633762227D223B, '1505489881', '1505626254');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/clear/backend:GET', '2', '删除后台缓存', null, 0x733A36333A227B2267726F7570223A225C75376631335C7535623538222C22736F7274223A22363031222C2263617465676F7279223A225C75376631335C7535623538227D223B, '1505491837', '1505626868');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/clear/frontend:GET', '2', '删除前台缓存', null, 0x733A36333A227B2267726F7570223A225C75376631335C7535623538222C22736F7274223A22363030222C2263617465676F7279223A225C75376631335C7535623538227D223B, '1505491810', '1505626868');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/comment/index:GET', '2', '评论列表', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323230222C2263617465676F7279223A225C75386263345C7538626261227D223B, '1505487310', '1505626296');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/comment/update:GET', '2', '修改评论(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323231222C2263617465676F7279223A225C75386263345C7538626261227D223B, '1505488537', '1505626296');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/comment/update:POST', '2', '修改评论(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323232222C2263617465676F7279223A225C75386263345C7538626261227D223B, '1505488570', '1505626296');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/create:GET', '2', '创建友情链接(查看)', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353031222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491474', '1505626848');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/create:POST', '2', '创建友情链接(确定)', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353032222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491511', '1505626848');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/delete:POST', '2', '删除友情链接', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353036222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491603', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/index:GET', '2', '友情链接列表', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353030222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491435', '1505626848');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/sort:POST', '2', '友情链接排序', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353035222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505627295', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/update:GET', '2', '修改友情链接(查看)', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353033222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491547', '1505626848');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/friendly-link/update:POST', '2', '修改友情链接(确定)', null, 0x733A38373A227B2267726F7570223A225C75353363625C75363063355C75393466655C7536336135222C22736F7274223A22353034222C2263617465676F7279223A225C75353363625C75363063355C75393466655C7536336135227D223B, '1505491571', '1505626848');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/create:GET', '2', '创建前台菜单(查看)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313031222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490500', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/create:POST', '2', '创建前台菜单(确定)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313032222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490586', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/delete:POST', '2', '删除前台菜单', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313036222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490673', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/index:GET', '2', '前台菜单列表', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313030222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490468', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/sort:POST', '2', '前台菜单排序', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313035222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505627002', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/update:GET', '2', '修改前台菜单(查看)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313033222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490617', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/frontend-menu/update:POST', '2', '修改前台菜单(确定)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313034222C2263617465676F7279223A225C75353234645C75353366305C75383364635C7535333535227D223B, '1505490643', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/log/delete:POST', '2', '删除日志', null, 0x733A36333A227B2267726F7570223A225C75363565355C7535666437222C22736F7274223A22373032222C2263617465676F7279223A225C75363565355C7535666437227D223B, '1505491737', '1505626889');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/log/index:GET', '2', '日志列表', null, 0x733A36333A227B2267726F7570223A225C75363565355C7535666437222C22736F7274223A22373030222C2263617465676F7279223A225C75363565355C7535666437227D223B, '1505491668', '1505626889');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/log/view-layer:GET', '2', '查看日志详情', null, 0x733A36333A227B2267726F7570223A225C75363565355C7535666437222C22736F7274223A22373031222C2263617465676F7279223A225C75363565355C7535666437227D223B, '1505491709', '1505626889');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/create:GET', '2', '创建前台菜单(查看)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313131222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490290', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/create:POST', '2', '创建后台菜单(确定)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313132222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490326', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/delete:POST', '2', '删除后台菜单', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313136222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490424', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/index:GET', '2', '后台菜单列表', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313130222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490244', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/sort:POST', '2', '后台菜单排序', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313135222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505627029', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/update:GET', '2', '修改后台菜单(查看)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313133222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490360', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/menu/update:POST', '2', '修改后台菜单(确定)', null, 0x733A37353A227B2267726F7570223A225C75383364635C7535333535222C22736F7274223A22313134222C2263617465676F7279223A225C75353430655C75353366305C75383364635C7535333535227D223B, '1505490388', '1505626149');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/create:GET', '2', '创建单页(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323331222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489298', '1505626318');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/create:POST', '2', '创建单页(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323332222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489334', '1505626318');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/delete:POST', '2', '删除单页', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323336222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489980', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/index:GET', '2', '单页列表', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323330222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489257', '1505626318');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/sort:POST', '2', '单页排序', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323335222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505627165', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/update:GET', '2', '修改单页(查看)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323333222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489549', '1505626318');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/page/update:POST', '2', '修改单页(确定)', null, 0x733A36333A227B2267726F7570223A225C75353138355C7535626239222C22736F7274223A22323334222C2263617465676F7279223A225C75353335355C7539383735227D223B, '1505489617', '1505626318');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-create:GET', '2', '创建权限(查看)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343031222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505491973', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-create:POST', '2', '创建权限(确定)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343032222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505492031', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-delete:POST', '2', '删除权限', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343036222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505492312', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-sort:POST', '2', '权限排序', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343035222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505627221', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-update:GET', '2', '修改权限(查看)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343033222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505492199', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permission-update:POST', '2', '修改权限(确定)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343034222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505492277', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/permissions:GET', '2', '权限列表', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343030222C2263617465676F7279223A225C75363734335C7539363530227D223B, '1505491923', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/role-create:GET', '2', '创建角色(查看)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343131222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492374', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/role-create:POST', '2', '创建角色(确定)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343132222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492408', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/role-delete:POST', '2', '删除角色', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343136222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492497', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/role-update:GET', '2', '修改角色(查看)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343133222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492434', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/role-update:POST', '2', '修改角色(确定)', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343134222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492463', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/roles-sort:POST', '2', '角色排序', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343135222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505627246', '1505627558');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/rbac/roles:GET', '2', '角色列表', null, 0x733A37353A227B2267726F7570223A225C75363734335C75393635305C75376261315C7537343036222C22736F7274223A22343130222C2263617465676F7279223A225C75383964325C7538323732227D223B, '1505492339', '1505626728');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/custom-create:POST', '2', '创建自定义设置项(确定)', null, 0x733A38313A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303135222C2263617465676F7279223A225C75383165615C75356239615C75346534395C75386262655C7537663665227D223B, '1505486899', '1505627612');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/custom:GET', '2', '自定义设置(查看)', null, 0x733A38313A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303133222C2263617465676F7279223A225C75383165615C75356239615C75346534395C75386262655C7537663665227D223B, '1505486625', '1505627612');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/custom:POST', '2', '自定义设置(确定)', null, 0x733A38313A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303134222C2263617465676F7279223A225C75383165615C75356239615C75346534395C75386262655C7537663665227D223B, '1505486664', '1505627612');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/smtp:GET', '2', 'smpt设置(查看)', null, 0x733A36373A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303130222C2263617465676F7279223A22736D74705C75386262655C7537663665227D223B, '1505486510', '1505626085');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/smtp:POST', '2', 'smtp设置(确定)', null, 0x733A36373A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303131222C2263617465676F7279223A22736D74705C75386262655C7537663665227D223B, '1505486562', '1505626920');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/test-smtp:POST', '2', '测试smtp设置', null, 0x733A36373A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303132222C2263617465676F7279223A22736D74705C75386262655C7537663665227D223B, '1505492827', '1505626085');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/website:GET', '2', '网站设置(查看)', null, 0x733A37353A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303030222C2263617465676F7279223A225C75376635315C75376164395C75386262655C7537663665227D223B, '1505486405', '1505626028');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/setting/website:POST', '2', '网站设置(确定)', null, 0x733A37353A227B2267726F7570223A225C75386262655C7537663665222C22736F7274223A22303031222C2263617465676F7279223A225C75376635315C75376164395C75386262655C7537663665227D223B, '1505486444', '1505626055');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/create:GET', '2', '创建前台用户(查看)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333031222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505490833', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/create:POST', '2', '创建前台用户(确定)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333032222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505490875', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/delete:POST', '2', '删除前台用户', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333035222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505491033', '1505627698');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/index:GET', '2', '前台用户列表', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333030222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505490796', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/update:GET', '2', '修改前台用户(查看)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333033222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505490922', '1505626626');
-INSERT INTO `%__prefix__%auth_item` VALUES ('/user/update:POST', '2', '修改前台用户(确定)', null, 0x733A37353A227B2267726F7570223A225C75373532385C7536323337222C22736F7274223A22333034222C2263617465676F7279223A225C75353234645C75353366305C75373532385C7536323337227D223B, '1505490999', '1505626626');
+INSERT INTO `%__prefix__%auth_item` VALUES
+            ('/ad/create:GET', '2', '创建(查看)', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"622\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/create:POST', '2', '创建(确定)', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"623\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/delete:POST', '2', '删除', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"626\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/index:GET', '2', '列表', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"620\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/sort:POST', '2', '排序', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"627\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/update:GET', '2', '修改(查看)', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"624\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/update:POST', '2', '修改(确定)', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"625\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/ad/view-layer:GET', '2', '查看', NULL, 's:75:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"621\",\"category\":\"\\u5e7f\\u544a\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/create:GET', '2', '创建(查看)', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"524\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/create:POST', '2', '创建(确定)', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"525\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/delete:POST', '2', '删除', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"522\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/index:GET', '2', '列表', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"520\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/sort:POST', '2', '排序', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"523\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/update:GET', '2', '修改(查看)', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"526\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/update:POST', '2', '修改(确定)', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"527\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/admin-user/view-layer:GET', '2', '查看', NULL, 's:69:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"521\",\"category\":\"\\u7ba1\\u7406\\u5458\"}\";', '1543974075', '1543974075'),
+            ('/article/create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"302\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"303\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"306\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"300\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"307\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"304\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"305\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/article/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"301\",\"category\":\"\\u6587\\u7ae0\"}\";', '1543974075', '1543974075'),
+            ('/banner/banner-create:GET', '2', '创建(查看)', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"611\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-create:POST', '2', '创建(确定)', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"612\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-delete:POST', '2', '删除(确定)', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"617\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-sort:POST', '2', '排序', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"616\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-update:GET', '2', '修改(查看)', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"614\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-update:POST', '2', '修改(确定)', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"615\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banner-view-layer:GET', '2', '查看', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"613\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/banners:GET', '2', '列表', NULL, 's:69:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"610\",\"category\":\"banner\"}\";', '1543974076', '1543974076'),
+            ('/banner/create:GET', '2', '创建(查看)', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"601\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/banner/create:POST', '2', '创建(确定)', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"602\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/banner/delete:POST', '2', '删除', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"605\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/banner/index:GET', '2', '列表', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"600\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/banner/update:GET', '2', '修改(查看)', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"603\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/banner/update:POST', '2', '修改(确定)', NULL, 's:81:\"{\"group\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"sort\":\"604\",\"category\":\"banner\\u7c7b\\u578b\"}\";', '1543974075', '1543974075'),
+            ('/category/create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"312\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"313\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"316\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"310\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"317\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"314\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"315\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/category/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"311\",\"category\":\"\\u5206\\u7c7b\"}\";', '1543974076', '1543974076'),
+            ('/clear/backend:GET', '2', '清除后台缓存', NULL, 's:63:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"720\",\"category\":\"\\u7f13\\u5b58\"}\";', '1543974076', '1543974076'),
+            ('/clear/frontend:GET', '2', '清除前台缓存', NULL, 's:63:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"721\",\"category\":\"\\u7f13\\u5b58\"}\";', '1543974076', '1543974076'),
+            ('/comment/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"324\",\"category\":\"\\u8bc4\\u8bba\"}\";', '1543974076', '1543974076'),
+            ('/comment/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"320\",\"category\":\"\\u8bc4\\u8bba\"}\";', '1543974076', '1543974076'),
+            ('/comment/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"322\",\"category\":\"\\u8bc4\\u8bba\"}\";', '1543974076', '1543974076'),
+            ('/comment/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"323\",\"category\":\"\\u8bc4\\u8bba\"}\";', '1543974076', '1543974076'),
+            ('/comment/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"321\",\"category\":\"\\u8bc4\\u8bba\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/create:GET', '2', '创建(查看)', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"702\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/create:POST', '2', '创建(确定)', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"703\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/delete:POST', '2', '删除', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"706\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/index:GET', '2', '列表', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"700\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/sort:POST', '2', '排序', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"707\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/update:GET', '2', '修改(查看)', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"704\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/update:POST', '2', '修改(确定)', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"705\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/friendly-link/view-layer:GET', '2', '查看', NULL, 's:75:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"701\",\"category\":\"\\u53cb\\u60c5\\u94fe\\u63a5\"}\";', '1543974076', '1543974076'),
+            ('/frontend-menu/create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"202\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974076', '1543974076'),
+            ('/frontend-menu/create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"203\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974076', '1543974076'),
+            ('/frontend-menu/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"206\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/frontend-menu/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"200\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974076', '1543974076'),
+            ('/frontend-menu/sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"207\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/frontend-menu/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"204\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/frontend-menu/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"205\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/frontend-menu/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"201\",\"category\":\"\\u524d\\u53f0\"}\";', '1543974076', '1543974076'),
+            ('/log/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"723\",\"category\":\"\\u65e5\\u5fd7\"}\";', '1543974077', '1543974077'),
+            ('/log/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"711\",\"category\":\"\\u65e5\\u5fd7\"}\";', '1543974077', '1543974077'),
+            ('/log/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u5176\\u4ed6\",\"sort\":\"712\",\"category\":\"\\u65e5\\u5fd7\"}\";', '1543974077', '1543974077'),
+            ('/menu/create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"212\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"213\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"216\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"210\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"217\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"214\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"215\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/menu/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u83dc\\u5355\",\"sort\":\"211\",\"category\":\"\\u540e\\u53f0\"}\";', '1543974077', '1543974077'),
+            ('/page/create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"332\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"333\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"336\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/index:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"330\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"337\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"334\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"335\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/page/view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u5185\\u5bb9\",\"sort\":\"331\",\"category\":\"\\u5355\\u9875\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"502\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"503\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"507\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"501\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"504\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"505\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permission-view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"506\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/permissions:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"500\",\"category\":\"\\u89c4\\u5219\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-create:GET', '2', '创建(查看)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"511\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-create:POST', '2', '创建(确定)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"512\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-delete:POST', '2', '删除', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"517\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974078', '1543974078'),
+            ('/rbac/role-update:GET', '2', '修改(查看)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"513\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-update:POST', '2', '修改(确定)', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"514\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-view-layer:GET', '2', '查看', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"515\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/role-sort:POST', '2', '排序', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"516\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/rbac/roles:GET', '2', '列表', NULL, 's:63:\"{\"group\":\"\\u6743\\u9650\",\"sort\":\"510\",\"category\":\"\\u89d2\\u8272\"}\";', '1543974077', '1543974077'),
+            ('/setting/custom-create:GET', '2', '自定义设置创建(查看)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"133\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom-create:POST', '2', '自定义设置创建(确定)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"134\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom-delete:POST', '2', '删除', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"132\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom-update:GET', '2', '自定义设置修改(查看)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"135\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom-update:POST', '2', '自定义设置修改(确定)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"136\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom:GET', '2', '修改(查看)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"130\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/custom:POST', '2', '修改(确定)', NULL, 's:81:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"131\",\"category\":\"\\u81ea\\u5b9a\\u4e49\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/smtp:GET', '2', '修改(查看)', NULL, 's:67:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"110\",\"category\":\"smtp\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/smtp:POST', '2', '修改(确定)', NULL, 's:67:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"111\",\"category\":\"smtp\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/test-smtp:POST', '2', '测试stmp设置', NULL, 's:67:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"112\",\"category\":\"smtp\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/website:GET', '2', '网站设置(查看)', NULL, 's:75:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"100\",\"category\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/setting/website:POST', '2', '网站设置(确定)', NULL, 's:75:\"{\"group\":\"\\u8bbe\\u7f6e\",\"sort\":\"101\",\"category\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\"}\";', '1543974078', '1543974078'),
+            ('/user/create:GET', '2', '创建(查看)', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"402\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/create:POST', '2', '创建(确定)', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"403\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/delete:POST', '2', '删除', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"406\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/index:GET', '2', '列表', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"400\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/sort:POST', '2', '排序', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"407\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/update:GET', '2', '修改(查看)', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"404\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/update:POST', '2', '修改(确定)', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"405\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078'),
+            ('/user/view-layer:GET', '2', '查看', NULL, 's:75:\"{\"group\":\"\\u7528\\u6237\",\"sort\":\"401\",\"category\":\"\\u524d\\u53f0\\u7528\\u6237\"}\";', '1543974078', '1543974078');
 
 -- ----------------------------
 -- Table structure for auth_item_child
@@ -388,8 +409,8 @@ CREATE TABLE `%__prefix__%auth_item_child` (
   `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`),
-  CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `%__prefix__%auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `%__prefix__%auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -423,6 +444,8 @@ CREATE TABLE `%__prefix__%category` (
   `alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sort` int(11) unsigned NOT NULL DEFAULT '0',
   `remark` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `template` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '分类模板',
+  `article_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '分类模板',
   `created_at` int(11) unsigned NOT NULL,
   `updated_at` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -431,9 +454,9 @@ CREATE TABLE `%__prefix__%category` (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `%__prefix__%category` VALUES ('1', '0', 'php', 'php', '0', '', '1468293958', '0');
-INSERT INTO `%__prefix__%category` VALUES ('2', '0', 'java', 'java', '0', '', '1468293965', '0');
-INSERT INTO `%__prefix__%category` VALUES ('3', '0', 'javascript', 'javascript', '0', '', '1468293974', '0');
+INSERT INTO `%__prefix__%category` VALUES ('1', '0', 'php', 'php', '0', '', '', '', '1468293958', '0');
+INSERT INTO `%__prefix__%category` VALUES ('2', '0', 'java', 'java', '0', '', '', '', '1468293965', '0');
+INSERT INTO `%__prefix__%category` VALUES ('3', '0', 'javascript', 'javascript', '0', '', '', '', '1468293974', '0');
 
 -- ----------------------------
 -- Table structure for comment
@@ -455,7 +478,7 @@ CREATE TABLE `%__prefix__%comment` (
   `updated_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最后修改时间',
   PRIMARY KEY (`id`),
   KEY `index_aid` (`aid`),
-  CONSTRAINT `fk_comment_aid` FOREIGN KEY (`aid`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_comment_aid` FOREIGN KEY (`aid`) REFERENCES `%__prefix__%article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -539,10 +562,10 @@ INSERT INTO `%__prefix__%menu` VALUES ('19', '0', '0', '缓存', '', 'fa fa-file
 INSERT INTO `%__prefix__%menu` VALUES ('20', '0', '19', '清除前台', 'clear/frontend', '', '0', '_blank', '0', '1', '1505570974', '1505570974');
 INSERT INTO `%__prefix__%menu` VALUES ('21', '0', '19', '清除后台', 'clear/backend', '', '0', '_blank', '0', '1', '1505570994', '1505570994');
 INSERT INTO `%__prefix__%menu` VALUES ('22', '0', '0', '日志', 'log/index', 'fa fa-history', '8', '_blank', '0', '1', '1505571212', '1512380045');
-INSERT INTO `%__prefix__%menu` VALUES ('23', '1', '0', '首页', '/', '', '0', '_self', '0', '1', '1505636890', '1505637024');
-INSERT INTO `%__prefix__%menu` VALUES ('24', '1', '0', 'php', '/php', '', '0', '_self', '0', '1', '1505636915', '1505636937');
-INSERT INTO `%__prefix__%menu` VALUES ('25', '1', '0', 'java', '/java', '', '0', '_self', '0', '1', '1505636975', '1505636975');
-INSERT INTO `%__prefix__%menu` VALUES ('26', '1', '0', 'javascript', '/javascript', '', '0', '_self', '0', '1', '1505637000', '1505637000');
+INSERT INTO `%__prefix__%menu` VALUES ('23', '1', '0', '首页', 'article/index', '', '0', '_self', '0', '1', '1505636890', '1505637024');
+INSERT INTO `%__prefix__%menu` VALUES ('24', '1', '0', 'php', '{"0":"article/index","cat":"php"}', '', '0', '_self', '0', '1', '1505636915', '1505636937');
+INSERT INTO `%__prefix__%menu` VALUES ('25', '1', '0', 'java', '{"0":"article/index","cat":"java"}', '', '0', '_self', '0', '1', '1505636975', '1505636975');
+INSERT INTO `%__prefix__%menu` VALUES ('26', '1', '0', 'javascript', '{"0":"article/index","cat":"javascript"}', '', '0', '_self', '0', '1', '1505637000', '1505637000');
 INSERT INTO `%__prefix__%menu` VALUES ('27', '0', '0', '运营管理', '', 'fa fa-ils', '1', '_self', '0', '1', '1505637000', '1505637000');
 INSERT INTO `%__prefix__%menu` VALUES ('28', '0', '27', 'Banner管理', 'banner/index', '', '0', '_self', '0', '1', '1505637000', '1505637000');
 INSERT INTO `%__prefix__%menu` VALUES ('29', '0', '27', '广告管理', 'ad/index', '', '0', '_self', '0', '1', '1505637000', '1505637000');

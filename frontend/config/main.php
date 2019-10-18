@@ -9,11 +9,12 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
+    'defaultRoute' => 'article/index',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
-            'identityClass' => common\models\User::className(),
+            'identityClass' => frontend\models\User::className(),
             'enableAutoLogin' => true,
         ],
         'session' => [
@@ -25,8 +26,15 @@ return [
                 [
                     'class' => yii\log\FileTarget::className(),
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/'.date('Y/m/d') . '.log',
                 ],
                 [
+                    /**
+                     注：此配置可能造成：
+                         1.当打开的页面包含错误时，响应缓慢。若您配置的发件箱不存在或连不上一直等待超时。
+                         2.如果common/config/main.php mail useFileTransport为true时，并不会真发邮件，只把邮件写到runtime目录，很容易造成几十个G吃硬盘。
+                         如您不需要发送邮件提醒建议删除此配置
+                     */
                     'class' => yii\log\EmailTarget::className(),
                     'levels' => ['error', 'warning'],
                     'except' => [
@@ -47,7 +55,7 @@ return [
             'keyPrefix' => 'frontend',       // 唯一键前缀
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,//true 美化路由(注:需要配合web服务器配置伪静态，详见http://doc.feehi.com/install.html), false 不美化路由
             'showScriptName' => false,//隐藏index.php
             'enableStrictParsing' => false,
             //'suffix' => '.html',//后缀，如果设置了此项，那么浏览器地址栏就必须带上.html后缀，否则会报404错误
@@ -65,7 +73,7 @@ return [
                 'page/<name:\w+>' => 'page/view',
                 'comment' => 'article/comment',
                 'search' => 'search/index',
-                'tag/<tag:\w+>' => 'search/tag',
+                'tag/<tag:[- \w]+>' => 'search/tag',
                 'rss' => 'article/rss',
                 'list/<page:\d+>' => 'site/index',
             ],
@@ -101,32 +109,35 @@ return [
                     'js' => [],
                 ],
                 frontend\assets\AppAsset::className() => [
+                    'sourcePath' => '@frontend/web/static',
                     'css' => [
-                        'a' => 'static/css/style.css',
-                        'b' => 'static/plugins/toastr/toastr.min.css',
+                        'a' => 'css/style.css',
+                        'b' => 'plugins/toastr/toastr.min.css',
                     ],
                     'js' => [
-                        'a' => 'static/js/jquery.min.js',
-                        'b' => 'static/js/index.js',
-                        'c' => 'static/plugins/toastr/toastr.min.js',
+                        'a' => 'js/jquery.min.js',
+                        'b' => 'js/index.js',
+                        'c' => 'plugins/toastr/toastr.min.js',
                     ],
                 ],
                 frontend\assets\IndexAsset::className() => [
+                    'sourcePath' => '@frontend/web/static',
                     'js' => [
-                        'a' => 'static/js/responsiveslides.min.js',
+                        'a' => 'js/responsiveslides.min.js',
                     ]
                 ],
                 frontend\assets\ViewAsset::className() => [
+                    'sourcePath' => '@frontend/web/static',
                     'css' => [
-                        'a' => 'static/syntaxhighlighter/styles/shCoreDefault.css'
+                        'a' => 'syntaxhighlighter/styles/shCoreDefault.css'
                     ],
                     'js' => [
-                        'a' => 'static/syntaxhighlighter/scripts/shCore.js',
-                        'b' => 'static/syntaxhighlighter/scripts/shBrushJScript.js',
-                        'c' => 'static/syntaxhighlighter/scripts/shBrushPython.js',
-                        'd' => 'static/syntaxhighlighter/scripts/shBrushPhp.js',
-                        'e' => 'static/syntaxhighlighter/scripts/shBrushJava.js',
-                        'f' =>'static/syntaxhighlighter/scripts/shBrushCss.js',
+                        'a' => 'syntaxhighlighter/scripts/shCore.js',
+                        'b' => 'syntaxhighlighter/scripts/shBrushJScript.js',
+                        'c' => 'syntaxhighlighter/scripts/shBrushPython.js',
+                        'd' => 'syntaxhighlighter/scripts/shBrushPhp.js',
+                        'e' => 'syntaxhighlighter/scripts/shBrushJava.js',
+                        'f' =>'syntaxhighlighter/scripts/shBrushCss.js',
                     ]
                 ],
             ]

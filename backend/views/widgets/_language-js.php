@@ -8,16 +8,24 @@
 ?>
 <script>
     var common = {
-        chooseFile: "<?=yii::t('app', 'Choose File')?>",
-        deleteText: "<?=yii::t('app', 'Delete')?>",
+        deleteText: "<?=Yii::t('app', 'Delete')?>"
     }
     var tips = {
-        confirmTitle: "<?=yii::t('app', 'Confirm')?>",
-        ok: "<?=yii::t('app', 'ok')?>",
-        cancel: "<?=yii::t('app', 'cancel')?>",
-        noItemSelected: "<?=yii::t('app', 'None item selected!')?>",
-        onlyPictureCanBeSelected: "<?=yii::t('app', 'Only picture file be permitted.')?>",
-        success: "<?=yii::t('app', 'Success')?>",
-        error: "<?=yii::t('app', 'Error')?>"
+        confirmTitle: "<?=Yii::t('app', 'Confirm')?>",
+        ok: "<?=Yii::t('app', 'ok')?>",
+        cancel: "<?=Yii::t('app', 'cancel')?>",
+        noItemSelected: "<?=Yii::t('app', 'None item selected!')?>",
+        onlyPictureCanBeSelected: "<?=Yii::t('app', 'Only picture file be permitted.')?>",
+        success: "<?=Yii::t('app', 'Success')?>",
+        error: "<?=Yii::t('app', 'Error')?>",
+        webuploader: {
+            uploadImage: "<?=Yii::t('app', 'Upload Image')?>",
+            clickSelectImage: "<?=Yii::t('app', 'Click select image')?>",
+            dragHere: "<?=Yii::t('app', 'or dragged picture here')?>",
+            confirmUse: "<?=Yii::t('app', 'Confirm use')?>",
+            pauseUploading: "<?=Yii::t('app', 'Pause uploading')?>",
+            continueUploading: "<?=Yii::t('app', 'Continue uploading')?>",
+            startUploading: "<?=Yii::t('app', 'Start uploading')?>",
+        }
     };
 </script>

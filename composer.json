@@ -14,10 +14,11 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
+        "ext-json":"*",
+        "ext-mbstring":"*",
         "yiisoft/yii2": ">=2.0.13",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "feehi/yii2-swoole": ">=0.0.5",
         "feehi/yii2-cdn" : "*",
         "yiisoft/yii2-imagine": "^2.1"
     },
@@ -38,10 +39,15 @@
             "bower-asset-library": "vendor/bower"
         }
     },
+    "scripts": {
+        "download-upload-files" : [
+            "@php yii feehi/download-upload-files"
+        ]
+    },
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://mirrors.aliyun.com/composer/"
         },
         {
             "type": "composer",
