@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [ //数据库配置，这里的配置可能会被conf/db.local main-local.php配置覆盖
             'class' => yii\db\Connection::className(),
-            'dsn' => 'mysql:host=10.0.75.1;dbname=yii2cms_liufee',
-            'username' => 'root',
-            'password' => 'root',
+            'dsn' => 'mysql:host=192.168.56.1;dbname=yii2cms_liufee',
+            'username' => 'work',
+            'password' => '111111',
             'charset' => 'utf8mb4',
         ],
         'mailer' => [
